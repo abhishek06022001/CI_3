@@ -38,10 +38,10 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md">
                                         <form action="<?php echo base_url('importdata') ?>" method="POST" enctype="multipart/form-data">
                                             <div class="row">
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-5">
                                                     <input type="file" name="import_file" class="form-control" />
                                                 </div>
                                                 <div class="col-sm-1">
@@ -50,29 +50,35 @@
                                                 <div class="col-sm-1">
                                                     <a href="<?php echo base_url('exportExcel') ?>" class="btn btn-primary">Export</a>
                                                 </div>
-                                                <div class="col-sm-5">
-                                                    <form>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control searchbox" placeholder="Search">
-                                                            <div class="input-group-btn">
-                                                                <button class="btn btn-default" type="submit">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                                                                    </svg><i class="bi bi-search"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <select class="form-select typeSearch" aria-label="Default select example">
-                                                        <option selected>Select Type</option>
-                                                        <option value="0" data-id="0">Part Time</option>
-                                                        <option value="1"  data-id="1">Full Time</option>      
-                                                    </select>
-                                                </div>
                                             </div>
                                         </form>
+                                    </div>
+                                    <div class="col-md">
+                                        <div class="row">
+                                            <div class="col-md">
+                                                <form action="<?php echo base_url('Employees') ?>" method="POST" class="d-flex" id="typeSearch">
+                                                    <input type="text" class="form-control searchbox" placeholder="Search">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default" type="submit">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                                            </svg><i class="bi bi-search"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select class="form-select typeSearch" name="typeSearch" aria-label="Default select example">
+                                                            <option value=''>Select Type</option>
+                                                            <option value="0" data-id="0" <?php if(isset($typeSearch) && $typeSearch=='0') { echo 'selected';}?>>Part Time</option>
+                                                            <option value="1" data-id="1" <?php if(isset($typeSearch) && $typeSearch=='1') { echo 'selected';}?>>Full Time</option>
+                                                        </select>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+
+
+
                                     </div>
 
                                     <div class="col-md-2">
@@ -305,12 +311,17 @@
                 });
             });
         });
-        $('.typeSearch').on("change",function(){
-            var val = $(this).val();
-            alert(val);
-            // ok now pass the val to a function that retreives the data from the db and load in to the employees table and load the view in the view #
-            
-        });
+        // $('.typeSearch').on("change", function() {
+        //     var val = $(this).val();
+        //     alert(val);
+        //     // ok now pass the val to a function that retreives the data from the db and load in to the employees table and load the view in the view #
+
+        // });
+            var form = document.getElementById("typeSearch");
+
+            document.getElementById("typeSearch").addEventListener("change", function () {
+                form.submit();
+            });
         // $(document).ready(function() {
         //     $('.deletebutton').click(function() {
         //         var ID = $(this).data('id');

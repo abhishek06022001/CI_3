@@ -33,13 +33,18 @@ class Employee_c extends CI_Controller
 	// }
 	public function index()
 	{    
-         
-			$data['arr'] = $this->Employee_m->getdata();
-			$this->load->view('Employeenew', $data);
-		 
-			
-		
-	
+        
+		$where = '';
+		$type='';
+		if($this->input->post('typeSearch')!=''){
+			//echo "<pre>";print_r($_POST);exit;
+			$type = $this->input->post('typeSearch');
+			$where .= " AND Type='".$type."'";
+		}
+		//echo "<pre>";print_r($where);exit;
+		$data['arr'] = $this->Employee_m->getdata($where);
+		$data['typeSearch'] = $type;
+		$this->load->view('Employeenew', $data);
 	}
 	public function getbyid()
 	{
@@ -70,12 +75,16 @@ class Employee_c extends CI_Controller
 			$this->Employee_m->insertdataa($data);
 		}
 	}
-	public function typeSearch()
-	{   
-	
+	public function typeSearch(){   
+		// echo '<script>alert("Invalid file");</script>';
 		
-
+		// get data by the type  into an array 
+		// then load the data 
+		$data['arr'] = $this->Employee_m->getdatabytype(1);	
+		$this->load->view('Employeenew', $data);	
 		
+		// print_r($data);
+		// exit;
 	}
 	public function serchType($data)
 	{

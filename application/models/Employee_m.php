@@ -3,10 +3,10 @@
 class Employee_m extends CI_Model
 {
     protected $table = 'employee';
-    public function getdata()
+    public function getdata($where='')
     {
         // $query = $this->db->get_where($this->table,array('isdeleted'=>0));
-        $query = $this->db->query('SELECT * FROM  employee where isdeleted= 0  order by emp_t_id desc ');
+        $query = $this->db->query('SELECT * FROM  employee where isdeleted= 0 '.$where.' order by emp_t_id desc ');
         if ($query->num_rows() > 0) {
             // echo "<pre>";print_r($query->result_array());echo "</pre>";exit; 
             return $query->result_array();
@@ -33,15 +33,7 @@ class Employee_m extends CI_Model
     }
     public function insertData($data)
     { 
-       	// echo 'hi';
-        // print_r($data);
-        // exit;
-        // if($data['Name'] != ''){
-        //     $this->db->insert($this->table, $data);
-        //     print_r($this->db->last_query());
-        //     exit;
-        //     return $this->db->insert_id();
-        // }
+      
         if($data[0] != 'Name'){
             $columnNames = array('Name', 'Phone','Email','Type','DOJ','DOB');
             $insertDatas = array_combine($columnNames, $data);
