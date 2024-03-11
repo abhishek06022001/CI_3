@@ -56,10 +56,8 @@
                                     <div class="col-md">
                                         <div class="row">
                                             <div class="col-md d-flex">
-                                         
-                                                   
                                                 <form action="<?php echo base_url('Employees') ?>" method="POST" class="d-flex" id="typeSearch">
-                                                    <input type="text" class="form-control searchbox" id="searchbox" name="searchbox" placeholder="Search"> 
+                                                    <input type="text" class="form-control searchbox" id="searchbox" name="searchbox" placeholder="Search">
                                                     <div class="input-group-btn">
                                                         <button class="btn btn-default" type="submit">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -70,11 +68,17 @@
                                                     <div class="col-sm-3 ">
                                                         <select class="form-select typeSearch" name="typeSearch" aria-label="Default select example">
                                                             <option value=''>Select Type</option>
-                                                            <option value="0" data-id="0" <?php if (isset($typeSearch) && $typeSearch == '0') {  echo 'selected'; } ?>>Part Time</option>
-                                                            <option value="1" data-id="1" <?php if (isset($typeSearch) && $typeSearch == '1') {  echo 'selected';} ?>>Full Time</option>
+                                                            <option value="0" data-id="0" <?php if (isset($typeSearch) && $typeSearch == '0') {
+                                                                                                echo 'selected';
+                                                                                            } ?>>Part Time</option>
+                                                            <option value="1" data-id="1" <?php if (isset($typeSearch) && $typeSearch == '1') {
+                                                                                                echo 'selected';
+                                                                                            } ?>>Full Time</option>
                                                         </select>
                                                     </div>
+                                                   
                                                 </form>
+                                                <button type="button" class="btn btn-dark  ms-3" name="resetbutton" id="resetbutton">Reset Search </button>
                                             </div>
                                         </div>
                                     </div>
@@ -99,8 +103,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php 
-                                        if($arr != null){
+                                        <?php
+                                        if ($arr != null) {
                                             foreach ($arr as $key => $array) : ?>
                                                 <tr>
                                                     <td><?php echo $key + 1; ?></td>
@@ -122,10 +126,9 @@
                                                         <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" data-id="<?php echo $array['emp_t_id'] ?>">Delete</button>
                                                     </td>
                                                 </tr>
-                                            <?php endforeach; 
-
+                                        <?php endforeach;
                                         }
-                                       ?>
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -159,7 +162,7 @@
                                             </div>
                                             <label for="staticEmail" class="col-sm-2 col-form-label">Type</label>
                                             <div class="col-sm-4">
-                                             
+
                                                 <select name="Type" id="Type" class="form-control">
                                                     <option value="" disabled selected>Select type</option>
                                                     <option value="0" id="option_part_time">PART TIME</option>
@@ -262,12 +265,24 @@
                     }
                 });
             });
+            $('#resetbutton').click(function(){
+            
+                $.ajax({
+                    url: "<?php echo base_url('Employee_c'); ?>",
+                    type: "get",
+                   
+                    success: function(res) {
+
+                        window.location.href = '<?php echo base_url('Employees') ?>';
+                    }
+                });
+            });
             $('#addemp').click(function() {
 
                 var Name = $('#Name').val();
                 var Phone = $('#Phone').val();
                 var emp_t_id = $('#emp_t_id').val();
-             
+
                 var Email = $('#Email').val();
                 var Type = $('#Type').val();
                 var DOB = $('#DOB').val();
@@ -275,7 +290,7 @@
                 if (Name.trim() === '' || Phone.trim() === '' || Email.trim() === '' || DOB.trim() === '' || DOJ.trim() === '') {
                     alert('Please fill in all details');
                     return;
-                    
+
                 }
                 if (isNaN(Phone) || Phone.length !== 10) {
                     alert('Invalid phone number');
@@ -314,37 +329,37 @@
                 });
             });
         });
-     
+
         var form = document.getElementById("typeSearch");
         var searchform = document.getElementById("searchbox");
 
         document.getElementById("typeSearch").addEventListener("change", function() {
             form.submit();
         });
-        $('#searchbox').on('blur',function(){     
+        $('#searchbox').on('blur', function() {
             // debugger;
-            event.preventDefault();  
+            event.preventDefault();
             var search = $('#searchbox').val();
             // alert(search);    
             var data = {
-                    'search': search,                    
-                };
-                
-               
-           console.log(data);
-           searchform.submit();
-          
+                'search': search,
+            };
+
+
+            console.log(data);
+            searchform.submit();
+
         });
-           
-            // $.ajax({
-            //         type: 'POST',
-            //         url: "<?php echo base_url('Employee_c') ?>",      
-            //         data:data,       
-            //         success: function(response) {
-            //             form.submit();        
-            //         }
-            //     });
-       
+
+        // $.ajax({
+        //         type: 'POST',
+        //         url: "<?php echo base_url('Employee_c') ?>",      
+        //         data:data,       
+        //         success: function(response) {
+        //             form.submit();        
+        //         }
+        //     });
+
         function isEmail(email) {
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             return regex.test(email);

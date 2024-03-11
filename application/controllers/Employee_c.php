@@ -23,30 +23,31 @@ class Employee_c extends CI_Controller
 
 	public function index()
 	{    		 
-		$where = '';
-		$type='';
-		$wheresearchbox ='';
-		$search = '';
-		if($this->input->post('typeSearch')!=''){
-			//echo "<pre>";print_r($_POST);exit;
-			$type = $this->input->post('typeSearch');
-			$where .= " AND Type='".$type."'";
-		}
-		if($this->input->post('searchbox')!=''){
-			$search = $this->input->post('searchbox');
-			$wheresearchbox .= "AND(Name LIKE '%".$search."%' OR Email LIKE '%".$search."%')" ;
-		}		
-		$where.=$wheresearchbox;
-		// echo "<pre>";print_r($where);exit;
-		// echo "<pre>";print_r($where);exit;// prints AND Name='abhishek'
-		$data['arr'] = $this->Employee_m->getdata($where);
-		// print_r($data);
-		// exit;
-		$data['typeSearch'] = $type;
-	
-			$this->load->view('Employeenew', $data);
 		
+			$where = '';
+			$type='';
+			$wheresearchbox ='';
+			$search = '';
+			if($this->input->post('typeSearch')!=''){
+				//echo "<pre>";print_r($_POST);exit;
+				$type = $this->input->post('typeSearch');
+				$where .= " AND Type='".$type."'";
+			}
+			if($this->input->post('searchbox')!=''){
+				$search = $this->input->post('searchbox');
+				$wheresearchbox .= "AND(Name LIKE '%".$search."%' OR Email LIKE '%".$search."%')" ;	
+				// $this->session->unset_userdata('searchbox');
+				empty($_POST);
+			}		
+			$where.=$wheresearchbox;
+			// echo "<pre>";print_r($where);exit;
+			// echo "<pre>";print_r($where);exit;// prints AND Name='abhishek'
+			$data['arr'] = $this->Employee_m->getdata($where);
+			// print_r($data);
+			// exit;
+			$data['typeSearch'] = $type;
 		
+				$this->load->view('Employeenew', $data);	
 	}
 	public function getbyid()
 	{
