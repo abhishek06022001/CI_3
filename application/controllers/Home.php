@@ -42,7 +42,7 @@ class Home extends CI_Controller {
 		// if($_SESSION['user_id']==null){
 		// 	redirect('login_c');
 		// }
-        $this->load->view('Home');
+        $this->load->view('DashBoard');
 	}
 	public function demo(){
 		echo "I am here";

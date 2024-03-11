@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php $this->load->view('header'); ?>
-
-
-
-
 <style>
     .modal-dialog {
         max-width: 800px;
@@ -30,7 +26,7 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Tables</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="<?php echo base_url("Dashboard") ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo base_url("home") ?>">Dashboard</a></li>
                             <li class="breadcrumb-item active">Tables</li>
                         </ol>
                         <div class="card mb-4">
