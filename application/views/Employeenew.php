@@ -99,28 +99,33 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($arr as $key => $array) : ?>
-                                            <tr>
-                                                <td><?php echo $key + 1; ?></td>
-                                                <td><?php echo $array['Name']; ?></td>
-                                                <td><?php echo $array['Phone']; ?></td>
-                                                <td><?php echo $array['Email']; ?></td>
-                                                <td>
-                                                    <?php
-                                                    if ($array['Type'] == '0') {
-                                                        echo "PART TIME";
-                                                    } else {
-                                                        echo "FULL TIME";
-                                                    }
-                                                    ?></td>
-                                                <td><?php echo $array['DOJ']; ?></td>
-                                                <td><?php echo $array['DOB']; ?></td>
-                                                <td>
-                                                    <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['emp_t_id'] ?>">EDIT</button>
-                                                    <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" data-id="<?php echo $array['emp_t_id'] ?>">Delete</button>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
+                                        <?php 
+                                        if($arr != null){
+                                            foreach ($arr as $key => $array) : ?>
+                                                <tr>
+                                                    <td><?php echo $key + 1; ?></td>
+                                                    <td><?php echo $array['Name']; ?></td>
+                                                    <td><?php echo $array['Phone']; ?></td>
+                                                    <td><?php echo $array['Email']; ?></td>
+                                                    <td>
+                                                        <?php
+                                                        if ($array['Type'] == '0') {
+                                                            echo "PART TIME";
+                                                        } else {
+                                                            echo "FULL TIME";
+                                                        }
+                                                        ?></td>
+                                                    <td><?php echo $array['DOJ']; ?></td>
+                                                    <td><?php echo $array['DOB']; ?></td>
+                                                    <td>
+                                                        <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['emp_t_id'] ?>">EDIT</button>
+                                                        <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" data-id="<?php echo $array['emp_t_id'] ?>">Delete</button>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; 
+
+                                        }
+                                       ?>
                                     </tbody>
                                 </table>
                             </div>

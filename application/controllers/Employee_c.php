@@ -20,13 +20,7 @@ class Employee_c extends CI_Controller
 		$data['arr'] = $this->Employee_m->getdata();
 		$this->load->view('Employeenew', $data);
 	}
-	// public function index($data)
-	// {    
-    //      if($data == ''){
-	// 		$data['arr'] = $this->Employee_m->getdata();
-	// 		$this->load->view('Employeenew', $data);
-	// 	 }
-	// }
+
 	public function index()
 	{    		 
 		$where = '';
@@ -40,9 +34,8 @@ class Employee_c extends CI_Controller
 		}
 		if($this->input->post('searchbox')!=''){
 			$search = $this->input->post('searchbox');
-			$wheresearchbox .= "AND Name='".$search."'";
-		}
-		
+			$wheresearchbox .= "AND(Name LIKE '%".$search."%' OR Email LIKE '%".$search."%')" ;
+		}		
 		$where.=$wheresearchbox;
 		// echo "<pre>";print_r($where);exit;
 		// echo "<pre>";print_r($where);exit;// prints AND Name='abhishek'
@@ -50,7 +43,10 @@ class Employee_c extends CI_Controller
 		// print_r($data);
 		// exit;
 		$data['typeSearch'] = $type;
-		$this->load->view('Employeenew', $data);
+	
+			$this->load->view('Employeenew', $data);
+		
+		
 	}
 	public function getbyid()
 	{
@@ -120,7 +116,7 @@ class Employee_c extends CI_Controller
 		// print_r($data['arr']);  
 		// exit;
 		// change the DOB format here 
-	// col titles
+		// col titles
 		$columnTitles = array('Name', 'Phone', 'Email', 'Type', 'DOB', 'DOJ');
 		// array for part time
 		$columnDisplayValues = array(
