@@ -20,29 +20,35 @@ class Employee_c extends CI_Controller
 		$data['arr'] = $this->Employee_m->getdata();
 		$this->load->view('Employeenew', $data);
 	}
-
 	// public function index($data)
 	// {    
     //      if($data == ''){
 	// 		$data['arr'] = $this->Employee_m->getdata();
 	// 		$this->load->view('Employeenew', $data);
 	// 	 }
-			
-		
-	
 	// }
 	public function index()
-	{    
-        
+	{    		 
 		$where = '';
 		$type='';
+		$wheresearchbox ='';
+		$search = '';
 		if($this->input->post('typeSearch')!=''){
 			//echo "<pre>";print_r($_POST);exit;
 			$type = $this->input->post('typeSearch');
 			$where .= " AND Type='".$type."'";
 		}
-		//echo "<pre>";print_r($where);exit;
+		if($this->input->post('searchbox')!=''){
+			$search = $this->input->post('searchbox');
+			$wheresearchbox .= "AND Name='".$search."'";
+		}
+		
+		$where.=$wheresearchbox;
+		// echo "<pre>";print_r($where);exit;
+		// echo "<pre>";print_r($where);exit;// prints AND Name='abhishek'
 		$data['arr'] = $this->Employee_m->getdata($where);
+		// print_r($data);
+		// exit;
 		$data['typeSearch'] = $type;
 		$this->load->view('Employeenew', $data);
 	}
@@ -76,20 +82,17 @@ class Employee_c extends CI_Controller
 		}
 	}
 	public function typeSearch(){   
-		// echo '<script>alert("Invalid file");</script>';
-		
+		// echo '<script>alert("Invalid file");</script>';	
 		// get data by the type  into an array 
 		// then load the data 
 		$data['arr'] = $this->Employee_m->getdatabytype(1);	
-		$this->load->view('Employeenew', $data);	
-		
+		$this->load->view('Employeenew', $data);		
 		// print_r($data);
 		// exit;
 	}
 	public function serchType($data)
 	{
 		$this->load->view('Employeenew', $data);	
-
 	}
 	
 

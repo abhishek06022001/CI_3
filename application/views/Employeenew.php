@@ -55,9 +55,11 @@
                                     </div>
                                     <div class="col-md">
                                         <div class="row">
-                                            <div class="col-md">
+                                            <div class="col-md d-flex">
+                                         
+                                                   
                                                 <form action="<?php echo base_url('Employees') ?>" method="POST" class="d-flex" id="typeSearch">
-                                                    <input type="text" class="form-control searchbox" placeholder="Search">
+                                                    <input type="text" class="form-control searchbox" id="searchbox" name="searchbox" placeholder="Search"> 
                                                     <div class="input-group-btn">
                                                         <button class="btn btn-default" type="submit">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -65,20 +67,16 @@
                                                             </svg><i class="bi bi-search"></i>
                                                         </button>
                                                     </div>
-                                                    <div class="col-sm-3">
+                                                    <div class="col-sm-3 ">
                                                         <select class="form-select typeSearch" name="typeSearch" aria-label="Default select example">
                                                             <option value=''>Select Type</option>
-                                                            <option value="0" data-id="0" <?php if(isset($typeSearch) && $typeSearch=='0') { echo 'selected';}?>>Part Time</option>
-                                                            <option value="1" data-id="1" <?php if(isset($typeSearch) && $typeSearch=='1') { echo 'selected';}?>>Full Time</option>
+                                                            <option value="0" data-id="0" <?php if (isset($typeSearch) && $typeSearch == '0') {  echo 'selected'; } ?>>Part Time</option>
+                                                            <option value="1" data-id="1" <?php if (isset($typeSearch) && $typeSearch == '1') {  echo 'selected';} ?>>Full Time</option>
                                                         </select>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
-
-
-
-
                                     </div>
 
                                     <div class="col-md-2">
@@ -156,7 +154,7 @@
                                             </div>
                                             <label for="staticEmail" class="col-sm-2 col-form-label">Type</label>
                                             <div class="col-sm-4">
-                                                <!-- <input type="text" style="width: 100%;" name="Type" id="Type"class="form-control"required> -->
+                                             
                                                 <select name="Type" id="Type" class="form-control">
                                                     <option value="" disabled selected>Select type</option>
                                                     <option value="0" id="option_part_time">PART TIME</option>
@@ -264,7 +262,7 @@
                 var Name = $('#Name').val();
                 var Phone = $('#Phone').val();
                 var emp_t_id = $('#emp_t_id').val();
-                // var Place = $('#Place').val();
+             
                 var Email = $('#Email').val();
                 var Type = $('#Type').val();
                 var DOB = $('#DOB').val();
@@ -272,7 +270,7 @@
                 if (Name.trim() === '' || Phone.trim() === '' || Email.trim() === '' || DOB.trim() === '' || DOJ.trim() === '') {
                     alert('Please fill in all details');
                     return;
-                    //  ||Phone.trim() === ''||Place.trim() === ''||Email.trim() === ''||DOB.trim() === ''||DOJ.trim() === ''
+                    
                 }
                 if (isNaN(Phone) || Phone.length !== 10) {
                     alert('Invalid phone number');
@@ -311,90 +309,37 @@
                 });
             });
         });
-        // $('.typeSearch').on("change", function() {
-        //     var val = $(this).val();
-        //     alert(val);
-        //     // ok now pass the val to a function that retreives the data from the db and load in to the employees table and load the view in the view #
+     
+        var form = document.getElementById("typeSearch");
+        var searchform = document.getElementById("searchbox");
 
-        // });
-            var form = document.getElementById("typeSearch");
-
-            document.getElementById("typeSearch").addEventListener("change", function () {
-                form.submit();
-            });
-        // $(document).ready(function() {
-        //     $('.deletebutton').click(function() {
-        //         var ID = $(this).data('id');
-        //         $.ajax({
-        //             url: "<?php echo base_url('Employee_c/deleteEmployee'); ?>",
-        //             type: "post",
-        //             data: {
-        //                 'ID': ID
-        //             },
-        //             success: function(res) {
-
-        //                 window.location.href = '<?php echo base_url('empnew') ?>';
-        //             }
-        //         });
-        //     });
-
-        // });
-
-        //save changes pe open hoga ye 
-        // $(document).ready(function() {
-        //     $('#addemp').click(function() {
-
-        //         var Name = $('#Name').val();
-        //         var Phone = $('#Phone').val();
-        //         var emp_t_id = $('#emp_t_id').val();
-        //         // var Place = $('#Place').val();
-        //         var Email = $('#Email').val();
-        //         var Type = $('#Type').val();
-        //         var DOB = $('#DOB').val();
-        //         var DOJ = $('#DOJ').val();
-        //         if (Name.trim() === '' || Phone.trim() === '' || Email.trim() === '' || DOB.trim() === '' || DOJ.trim() === '') {
-        //             alert('Please fill in all details');
-        //             return;
-        //             //  ||Phone.trim() === ''||Place.trim() === ''||Email.trim() === ''||DOB.trim() === ''||DOJ.trim() === ''
-        //         }
-        //         if (isNaN(Phone) || Phone.length !== 10) {
-        //             alert('Invalid phone number');
-        //             return;
-        //         }
-        //         if (!isEmail(Email)) {
-        //             alert('Invalid email address');
-        //             return;
-        //         }
-        //         var fakeDOB = new Date(DOB);
-        //         var today = new Date();
-        //         var age = Math.floor((today - fakeDOB) / (365 * 24 * 60 * 60 * 1000));
-        //         if (age < 18) {
-        //             alert("Age is less than 18 ");
-        //             return;
-        //         }
-        //         var data = {
-        //             'Name': Name,
-        //             'Phone': Phone,
-        //             'emp_t_id': emp_t_id,
-        //             // 'Place': Place,
-        //             'Email': Email,
-        //             'Type': Type,
-        //             'DOB': DOB,
-        //             'DOJ': DOJ
-        //         };
-
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: "<?php echo base_url('Employee_c/addemployee') ?>",
-        //             data: data,
-        //             success: function(response) {
-        //                 console.log(response);
-        //                 window.location.href = '<?php echo base_url('Employees') ?>';
-        //             }
-        //         });
-        //     });
-        // });
-
+        document.getElementById("typeSearch").addEventListener("change", function() {
+            form.submit();
+        });
+        $('#searchbox').on('blur',function(){     
+            // debugger;
+            event.preventDefault();  
+            var search = $('#searchbox').val();
+            // alert(search);    
+            var data = {
+                    'search': search,                    
+                };
+                
+               
+           console.log(data);
+           searchform.submit();
+          
+        });
+           
+            // $.ajax({
+            //         type: 'POST',
+            //         url: "<?php echo base_url('Employee_c') ?>",      
+            //         data:data,       
+            //         success: function(response) {
+            //             form.submit();        
+            //         }
+            //     });
+       
         function isEmail(email) {
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             return regex.test(email);
