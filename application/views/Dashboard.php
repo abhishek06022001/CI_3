@@ -57,7 +57,7 @@
                                                             <h4>PART TIME EMPLOYEES</h4>
                                                         </div>
                                                         <div>
-                                                        <h1><?php echo implode(" ",$part_time) ?></h1>
+                                                        <h1><?php echo $part_time['total_count'] ?></h1>
 
                                                         </div>
 
@@ -86,7 +86,7 @@
                                                             <h4>FULL TIME EMPLOYEES</h4>
                                                         </div>
                                                         <div>
-                                                        <h1><?php echo implode(" ",$full_time) ?></h1>
+                                                        <h1><?php echo $full_time['total_count'] ?></h1>
                                                         </div>
                                                     </div>
                                                 </div>

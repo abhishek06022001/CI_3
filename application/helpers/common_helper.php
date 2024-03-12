@@ -28,7 +28,7 @@ function getState($id){
 function getCount($where){
     $CI = &get_instance();
     $table = "employee";
-    $sql ="select count(*) from $table where Type =$where AND isdeleted = '0'";
+    $sql ="select count(*) as total_count from $table where Type =$where AND isdeleted = '0'";
     $result = $CI->db->query($sql);
     if ($result) {
         return $result->row_array(); // return the Count : frequencey array 
