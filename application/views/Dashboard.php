@@ -25,7 +25,7 @@
                                                             <h4>TOTAL EMPLOYEES</h4>
                                                         </div>
                                                         <div>
-                                                            <h1>04</h1>
+                                                        <h1><?php echo (implode(" ",$part_time)+ implode(" ",$full_time)) ?></h1>
 
                                                         </div>
 
@@ -34,7 +34,14 @@
                                                 </div>
 
                                                 <div class="card-footer d-flex align-items-center justify-content-between">
+                                                    <!-- <FORM>
                                                     <a class="small text-white stretched-link" href="<?php echo base_url("Employees") ?>"  style="color: white;  text-decoration: none;">VIEW DETAILS!</a>
+                                                    </FORM> -->
+                                                    <form id="total_details" action="<?php echo base_url("Employees") ?>" method="post">
+                                                        <input type="hidden" value="" name="typeSearch" />
+                                                        <a href="#" onclick="document.getElementById('total_details').submit();" style="color: white;  text-decoration: none;">VIEW DETAILS!</a>
+                                                    </form>
+
                                                     <div class="small text-white"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
                                                             <path fill="currentColor" d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path>
                                                         </svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com --></div>
@@ -50,7 +57,7 @@
                                                             <h4>PART TIME EMPLOYEES</h4>
                                                         </div>
                                                         <div>
-                                                            <h1>03</h1>
+                                                        <h1><?php echo implode(" ",$part_time) ?></h1>
 
                                                         </div>
 
@@ -79,17 +86,13 @@
                                                             <h4>FULL TIME EMPLOYEES</h4>
                                                         </div>
                                                         <div>
-                                                            <h1>01</h1>
-
+                                                        <h1><?php echo implode(" ",$full_time) ?></h1>
                                                         </div>
-
-
                                                     </div>
                                                 </div>
-
+                                            
                                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                                    
-                                                <form id="full_time_details" action="<?php echo base_url("Employees") ?>" method="post">
+                                                    <form id="full_time_details" action="<?php echo base_url("Employees") ?>" method="post">
                                                         <input type="hidden" value="1" name="typeSearch" />
                                                         <a href="#" onclick="document.getElementById('full_time_details').submit();" style="color: white;  text-decoration: none;">VIEW DETAILS!</a>
                                                     </form>
@@ -97,10 +100,8 @@
                                                             <path fill="currentColor" d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path>
                                                         </svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com --></div>
                                                 </div>
-
                                             </div>
                                         </div>
-
 
                                     </div>
                                     <div class="row">
