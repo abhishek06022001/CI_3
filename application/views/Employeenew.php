@@ -62,17 +62,13 @@
                                                         </button>
                                                     </div>
                                                     <div class="col-sm-3 ">
+                                                        <!-- name  is array key and value is the typeSearch value  -->
                                                         <select class="form-select typeSearch" name="typeSearch" aria-label="Default select example">
                                                             <option value=''>Select Type</option>
-                                                            <option value="0" data-id="0" <?php if (isset($typeSearch) && $typeSearch == '0') {
-                                                                                                echo 'selected';
-                                                                                            } ?>>Part Time</option>
-                                                            <option value="1" data-id="1" <?php if (isset($typeSearch) && $typeSearch == '1') {
-                                                                                                echo 'selected';
-                                                                                            } ?>>Full Time</option>
+                                                            <option value="0" data-id="0" <?php if (isset($typeSearch) && $typeSearch == '0') {   echo 'selected'; } ?>>Part Time</option>
+                                                            <option value="1" data-id="1" <?php if (isset($typeSearch) && $typeSearch == '1') {   echo 'selected';  } ?>>Full Time</option>
                                                         </select>
                                                     </div>
-                                                   
                                                 </form>
                                                 <button type="button" class="btn btn-dark  ms-3" name="resetbutton" id="resetbutton">Reset Search </button>
                                             </div>

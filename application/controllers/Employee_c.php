@@ -22,14 +22,13 @@ class Employee_c extends CI_Controller
 	}
 
 	public function index()
-	{    		 
-		
+	{    		 		
 			$where = '';
 			$type='';
 			$wheresearchbox ='';
-			$search = '';
-			if($this->input->post('typeSearch')!=''){
-				//echo "<pre>";print_r($_POST);exit;
+			$search = '';		
+			if($this->input->post('typeSearch')!=''  ){
+				// echo "<pre>";print_r($_POST);exit;
 				$type = $this->input->post('typeSearch');
 				$where .= " AND Type='".$type."'";
 			}
@@ -45,9 +44,8 @@ class Employee_c extends CI_Controller
 			$data['arr'] = $this->Employee_m->getdata($where);
 			// print_r($data);
 			// exit;
-			$data['typeSearch'] = $type;
-		
-				$this->load->view('Employeenew', $data);	
+			$data['typeSearch'] = $type;		
+			$this->load->view('Employeenew', $data);	
 	}
 	public function getbyid()
 	{
