@@ -25,11 +25,8 @@
                                                             <h4>TOTAL EMPLOYEES</h4>
                                                         </div>
                                                         <div>
-                                                        <h1><?php echo (implode(" ",$part_time)+ implode(" ",$full_time)) ?></h1>
-
+                                                           <h1><?php echo (implode(" ",$part_time)+ implode(" ",$full_time)) ?></h1>
                                                         </div>
-
-
                                                     </div>
                                                 </div>
 
@@ -44,7 +41,8 @@
 
                                                     <div class="small text-white"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
                                                             <path fill="currentColor" d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path>
-                                                        </svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com --></div>
+                                                        </svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com -->
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -57,23 +55,19 @@
                                                             <h4>PART TIME EMPLOYEES</h4>
                                                         </div>
                                                         <div>
-                                                        <h1><?php echo $part_time['total_count'] ?></h1>
-
+                                                             <h1><?php echo $part_time['total_count'] ?></h1>
                                                         </div>
-
-
                                                     </div>
                                                 </div>
-
                                                 <div class="card-footer d-flex align-items-center justify-content-between">
-
                                                     <form id="part_time_details" action="<?php echo base_url("Employees") ?>" method="post">
                                                         <input type="hidden" value="0" name="typeSearch" />
                                                         <a href="#" onclick="document.getElementById('part_time_details').submit();" value="0" style="color: white;  text-decoration: none;">VIEW DETAILS!</a>
                                                     </form>
                                                     <div class="small text-white"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
                                                             <path fill="currentColor" d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path>
-                                                        </svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com --></div>
+                                                               </svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com -->
+                                                    </div>
                                                 </div>
 
                                             </div>
