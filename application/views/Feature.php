@@ -13,6 +13,7 @@
     }
 </style>
 
+
 <?php $this->load->view('header'); ?>
 
 
@@ -24,6 +25,8 @@
             <main>
 
                 <div class="container mt-5  ">
+                    <div style="margin-bottom:5rem">
+
                     <form action="<?php echo base_url("addFeature") ?> " method="post">
                         <h6 class="addfeature">Add Feature</h6>
                         <div class="row ">
@@ -47,10 +50,40 @@
 
 
                       
-                        <button type="submit" class="btn btn-primary btn-block" id="register" disabled value="Register">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-block" id="register"  value="Register">Submit</button>
                       
                     </form>
+                    </div>
                          <!-- table  addd here-->
+                         <table id="datatablesSimple"  class="table table-bordered "  >
+                                    <thead>
+                                        <tr>
+                                        <th class="col-1">Sr.No</th>
+                                        <th class="col-3">Name</th>
+                                        <th class="col-5">Icon Class name</th>
+                                        <th class="col-3">Options</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if ($arr != null) {
+                                            foreach ($arr as $key => $array) : ?>
+                                                <tr>
+                                                    <td><?php echo $key + 1; ?></td>
+                                                    <td><?php echo $array['Menu_title']; ?></td>
+                                                    <td><?php echo $array['label']; ?></td>
+                                               
+                                                   
+                                                    <td>
+                                                        <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-bs-toggle="modal" data-bs-target="#exampleModaladd">EDIT</button>
+                                                        <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" >Delete</button>
+                                                    </td>
+                                                </tr>
+                                        <?php endforeach;
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
 
                 </div>
                

@@ -13,7 +13,9 @@ class Feature_c extends CI_Controller
 		$this->load->model('Feature_m');
 	}
     public function Feature(){
-        $this->load->view('Feature');
+		$data['arr'] = $this->Feature_m->getdata();
+
+        $this->load->view('Feature',$data);
     }
 	public function addFeature(){
 		// echo "<pre>";print_r(   );echo "</pre>";exit;
