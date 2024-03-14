@@ -47,10 +47,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="alert alert-warning" role="alert">
+                            Enter the icon class from <a href="https://fontawesome.com/search" target="_blank">this page</a>
+                        </div>
 
 
                       
-                        <button type="submit" class="btn btn-primary btn-block" id="register"  value="Register">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-block" id="register" disabled  value="Register">Submit</button>
                       
                     </form>
                     </div>
@@ -97,21 +100,21 @@
     </div>
     <?php $this->load->view('footer'); ?>
     <script>
-        $('#featureName, #featureIcon').bind('keyup', function() {
-
-
-            if (allFilled()) {
-                $('#register').removeAttr('disabled');
-            }
-        });
+       $(document).ready(function() {
+                $('#featureName, #featureIcon').on('input', function() {
+                    if (allFilled()) {
+                        $('#register').removeAttr('disabled');
+                    } else {
+                        $('#register').prop('disabled', true);
+                        }
+                    });
+                });
 
         function allFilled() {
-            var filled = true;
-            $('main input').each(function() {
-                if ($(this).val() == '') filled = false;
-            });
-            return filled;
+          
+            return $('#featureName').val()!=="" && $('#featureIcon').val()!== "";
         }
+
     </script>
 
 </body>
