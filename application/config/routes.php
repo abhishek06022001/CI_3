@@ -66,8 +66,10 @@ $route['changed_password']= 'Login_c/changed_password';
 $route['exportExcel']= 'Employee_c/exportExcel';
 $route['partTime']= 'Employee_c/partTime';
 $route['typeSearch']= 'Employee_c/typeSearch';
-$route['Feature']= 'Feature_c/Feature';
+$route['Feature']= 'Feature_c';
 $route['addFeature'] = 'Feature_c/addFeature';
+$route['deleteFeature']='Feature_c/deleteFeature';
+
 
 
 

@@ -4,7 +4,7 @@
   
     
     $table = "menu_t";
-    $sql = "SELECT * FROM $table WHERE Parent_menu_id = $id";
+    $sql = "SELECT * FROM $table WHERE (Parent_menu_id = $id AND isDeleted = 0) ";
 
     $result = $CI->db->query($sql);
    // echo "<pre>";print_r($result->result_array());"</pre>";exit;
