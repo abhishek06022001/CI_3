@@ -4,9 +4,6 @@ class Feature_m extends CI_Model
 {
     protected $table = 'menu_t';
     public function deletedata($id){
-        
-        // $this->db->where('menu_id',$id);
-        // $this->db->update($this->table,'isDeleted',1);
         $data = array(
             'isDeleted' =>1
         );
@@ -20,8 +17,7 @@ class Feature_m extends CI_Model
         $this->db->insert($this->table,$insertDatas);
     }   
     public function getdata (){
-
-        $query = $this->db->query('SELECT * FROM menu_t  where isDeleted = 0' );
+        $query = $this->db->query('SELECT * FROM menu_t  where isDeleted = 0 order by isOrder ASC' );
         if ($query->num_rows() > 0) {
             // echo "<pre>";print_r($query->result_array());echo "</pre>";exit; 
             return $query->result_array();
@@ -29,8 +25,7 @@ class Feature_m extends CI_Model
             return null;
         }
     }
-    public function updateData($menu_id,$data){
-     
+    public function updateData($menu_id,$data){    
         $this->db->where('menu_id',$menu_id);
         $this->db->update($this->table,$data);
     }
@@ -38,6 +33,4 @@ class Feature_m extends CI_Model
        $query = $this->db->get_where($this->table,array('menu_id'=>$id));
        return $query->result_array();
     }
-
-
 }

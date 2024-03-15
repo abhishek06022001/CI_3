@@ -23,19 +23,19 @@ class Feature_c extends CI_Controller
 		echo json_encode($result);
 	}
 	public function updatebypid(){
-		// echo "<pre>";print_r($_POST);exit; echoed prints in the 
-	
+		// echo "<pre>";print_r($_POST);exit; echoed prints in the 	
 		$menu_id= $this ->input->post('menu_id');
 		// echo "<pre>";print_r($menu_id);exit;
 		$Menu_title = $this->input->post('name');
 		$label = $this->input->post('editFeatureIcon');
+		$isOrder = $this->input->post('editOrder');
 		$data = array(
 			'Menu_Title'=>$Menu_title,
-			'label'=>$label
+			'label'=>$label,
+			'isOrder'=>$isOrder
 		);
 		// echo "<pre>";print_r($data);echo "</pre>";exit;
 		$this->Feature_m->updateData($menu_id,$data);
-
 	}
 	public function addFeature(){
 		// echo "<pre>";print_r($_POST);exit;

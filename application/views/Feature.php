@@ -95,6 +95,10 @@
                                         <label for="editFeatureIcon">Feature Icon</label>
                                         <input type="text" class="form-control" id="editFeatureIcon">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="editOrder">Order</label>
+                                        <input type="text" class="form-control" id="editOrder">
+                                    </div>
 
                                     <button type="button" class="btn btn-primary" id="save" disabled>Submit</button>
 
@@ -126,9 +130,9 @@
 
             function allFilled() {
 
-                return $('#featureName').val() !== "" && $('#featureIcon').val() !== "";
+                return $('#featureName').val() !== "" && $('#featureIcon').val() !== ""  ;
             }
-            $('#name,#editFeatureIcon').on('input', function() {
+            $('#name,#editFeatureIcon,#editOrder').on('input', function() {
                 if (isFilled()) {
                     $('#save').removeAttr('disabled');
 
@@ -138,7 +142,7 @@
             });
 
             function isFilled() {
-                return ($('#name').val() !== "" && $('#editFeatureIcon').val() !== "");
+                return ($('#name').val() !== "" && $('#editFeatureIcon').val() !== "" && $('#editOrder').val() !== "");
             }
             $('.deletebutton').click(function() {
                 var ID = $(this).data('id');
@@ -169,6 +173,7 @@
                         $('#name').val(res[0].Menu_title);
                         $('#editFeatureIcon').val(res[0].label);
                         $('#menu_id').val(res[0].menu_id);
+                        $('#editOrder').val(res[0].isOrder);
 
 
                         // window.location.href = '<?php echo base_url('Feature') ?>';
@@ -182,12 +187,14 @@
                 // alert(menu_id);
                 var name = $('#name').val();
                 var editFeatureIcon = $('#editFeatureIcon').val();
+                var editOrder = $('#editOrder').val();
 
 
                 var data = {
                     'menu_id': menu_id,
                     'name': name,
-                    'editFeatureIcon': editFeatureIcon
+                    'editFeatureIcon': editFeatureIcon,
+                    'editOrder': editOrder
                 };
 
                 $.ajax({

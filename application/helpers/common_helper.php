@@ -4,7 +4,7 @@
   
     
     $table = "menu_t";
-    $sql = "SELECT * FROM $table WHERE (Parent_menu_id = $id AND isDeleted = 0) ";
+    $sql = "SELECT * FROM $table WHERE (Parent_menu_id = $id AND isDeleted = 0)  order by isOrder";
 
     $result = $CI->db->query($sql);
    // echo "<pre>";print_r($result->result_array());"</pre>";exit;
@@ -28,7 +28,7 @@ function getState($id){
 function getCount($where){
     $CI = &get_instance();
     $table = "employee";
-    $sql ="select count(*) as total_count from $table where Type =$where AND isdeleted = '0'";
+    $sql ="select count(*) as total_count from $table where Type =$where AND isdeleted = '0' ";
     $result = $CI->db->query($sql);
     if ($result) {
         return $result->row_array(); // return the Count : frequencey array 
