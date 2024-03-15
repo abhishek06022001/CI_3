@@ -69,6 +69,9 @@ $route['typeSearch']= 'Employee_c/typeSearch';
 $route['Feature']= 'Feature_c';
 $route['addFeature'] = 'Feature_c/addFeature';
 $route['deleteFeature']='Feature_c/deleteFeature';
+$route['user-management']='User_c';
+
+
 
 
 

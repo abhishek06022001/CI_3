@@ -20,7 +20,7 @@ $id = 0;
                             $datacolpase = 'data-bs-toggle="collapse" data-bs-target="#collapse' . $key . '" aria-expanded="false" aria-controls="collapse' . $key . '"';
                         }
                     ?>
-                        <a class="nav-link <?php echo $collapsed; ?>" href="<?php echo $menu['Menu_title'];?>" <?php echo $datacolpase; ?>>
+                        <a class="nav-link <?php echo $collapsed; ?>" href="<?php echo $menu['hreflink'];?>" <?php echo $datacolpase; ?>>
                             <div class="sb-nav-link-icon"><i class="<?php echo $menu['label'] ?>"></i></div>
                             <?php echo $menu['Menu_title']; ?>
                         </a>
@@ -28,7 +28,7 @@ $id = 0;
                             <div class="collapse" id="collapse<?php echo $key; ?>" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <?php foreach ($child_menu as $cmenu) { ?>
-                                        <a class="nav-link" href= <?php echo $cmenu['Menu_title']; ?>><?php echo $cmenu['Menu_title']; ?></a>
+                                        <a class="nav-link" href= <?php echo $cmenu['hreflink']; ?>><?php echo $cmenu['Menu_title']; ?></a>
                                     <?php } ?>
                                 </nav>
                             </div>
