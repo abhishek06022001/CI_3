@@ -29,6 +29,15 @@ class Feature_m extends CI_Model
             return null;
         }
     }
+    public function updateData($menu_id,$data){
+     
+        $this->db->where('menu_id',$menu_id);
+        $this->db->update($this->table,$data);
+    }
+    public function getDataByFeatureId($id){
+       $query = $this->db->get_where($this->table,array('menu_id'=>$id));
+       return $query->result_array();
+    }
 
 
 }

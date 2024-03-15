@@ -5,16 +5,13 @@
     .modal-dialog {
         max-width: 800px;
     }
-
     .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
         padding-left: 125px;
     }
-
     .hidden {
         display: none;
     }
 </style>
-
 <body class="sb-nav-fixed">
     <?php $this->load->view('header_top'); ?>
     <div id="layoutSidenav">
@@ -22,7 +19,6 @@
         <div id="layoutSidenav_content">
             <main>
                 <div id="layoutSidenav_content">
-
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Tables</h1>
                         <ol class="breadcrumb mb-4">
@@ -74,7 +70,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-2">
                                         <button class="btn btn-success addemp" data-bs-toggle="modal" data-bs-target="#exampleModaladd" style="float: right;">Add Employee</button>
                                     </div>
@@ -126,7 +121,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- ADD MODAL HERE -->
+                    <!-- ADD/EDIT MODAL HERE -->
                     <div class="modal fade" id="exampleModaladd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -154,7 +149,6 @@
                                             </div>
                                             <label for="staticEmail" class="col-sm-2 col-form-label">Type</label>
                                             <div class="col-sm-4">
-
                                                 <select name="Type" id="Type" class="form-control">
                                                     <option value="" disabled selected>Select type</option>
                                                     <option value="0" id="option_part_time">PART TIME</option>
@@ -232,7 +226,6 @@
                     }
                 })
             });
-
             $('.addemp').click(function() {
                 $('#exampleModalLabel').html('Add Employee');
                 $('#emp_t_id').val('');
@@ -252,29 +245,23 @@
                         'ID': ID
                     },
                     success: function(res) {
-
                         window.location.href = '<?php echo base_url('empnew') ?>';
                     }
                 });
             });
             $('#resetbutton').click(function(){
-            
                 $.ajax({
                     url: "<?php echo base_url('Employee_c'); ?>",
                     type: "get",
-                   
                     success: function(res) {
-
                         window.location.href = '<?php echo base_url('Employees') ?>';
                     }
                 });
             });
             $('#addemp').click(function() {
-
                 var Name = $('#Name').val();
                 var Phone = $('#Phone').val();
                 var emp_t_id = $('#emp_t_id').val();
-
                 var Email = $('#Email').val();
                 var Type = $('#Type').val();
                 var DOB = $('#DOB').val();
@@ -282,7 +269,6 @@
                 if (Name.trim() === '' || Phone.trim() === '' || Email.trim() === '' || DOB.trim() === '' || DOJ.trim() === '') {
                     alert('Please fill in all details');
                     return;
-
                 }
                 if (isNaN(Phone) || Phone.length !== 10) {
                     alert('Invalid phone number');
@@ -309,7 +295,6 @@
                     'DOB': DOB,
                     'DOJ': DOJ
                 };
-
                 $.ajax({
                     type: 'POST',
                     url: "<?php echo base_url('Employee_c/addemployee') ?>",
@@ -321,10 +306,8 @@
                 });
             });
         });
-
         var form = document.getElementById("typeSearch");
         var searchform = document.getElementById("searchbox");
-
         document.getElementById("typeSearch").addEventListener("change", function() {
             form.submit();
         });
@@ -336,13 +319,9 @@
             var data = {
                 'search': search,
             };
-
-
             console.log(data);
             searchform.submit();
-
         });
-
         // $.ajax({
         //         type: 'POST',
         //         url: "<?php echo base_url('Employee_c') ?>",      
@@ -351,13 +330,10 @@
         //             form.submit();        
         //         }
         //     });
-
         function isEmail(email) {
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             return regex.test(email);
         }
     </script>
-
 </body>
-
 </html>

@@ -55,6 +55,7 @@ class Employee_c extends CI_Controller
 	}
 	public function addemployee()
 	{	
+		// echo "<pre>";print_r($_POST);exit;
 		$Name = $this->input->post('Name');
 		$Phone = $this->input->post('Phone');
 		$emp_t_id = $this->input->post('emp_t_id');
