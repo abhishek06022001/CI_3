@@ -19,19 +19,21 @@ class Role_c extends CI_Controller
         // $data['arr2']= $this->Role_m->getperm( $data['arr']);
         // echo "<pre>";print_r($data);echo "</pre>";exit;
         return $this->load->view('Role',$data);
-    }
+    }  
     public function add($role_id=''){
        
+        $data['features_data'] = $this->Feature_m->getdata();
+        echo "<pre>";print_r($data);echo "</pre>";exit;
 
-      if($role_id == NULL){
-        $data['arr'] = $this->Feature_m->getdata();
-        return $this->load->view('role_m' ,$data,$role_id);
-      }else{
-        // echo "<pre>";print_r($role_id);echo "</pre>";exit;
-        
-      }
+        if($role_id!=''){
+            $data['role_data']       = $this->Role_m->get_role_data($role_id);
+            echo "<pre>";print_r($data);echo "</pre>";exit;
+            $data['role_permissions'] = $this->Role_m->get_role_permissions($role_id);
+            echo "<pre>";print_r($data);echo "</pre>";exit;
+        }
+        echo "<pre>";print_r($data);echo "</pre>";exit;
      // fill the data from the db using the db 
-      
+        return $this->load->view('role_m' ,$data,$role_id);
     }
     public function addrole(){
        // echo "<pre>";print_r($_POST);echo "</pre>";exit;  

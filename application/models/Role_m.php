@@ -41,5 +41,21 @@ class Role_m extends CI_Model
         $this->db->where('role_id', $role_id);
         $this->db->update($this->roletable, $data);
     }
+
+    public function get_role_data($role_id){
+        $query = $this->db->get_where($this->roletable,array('role_id '=>$role_id));
+        return $query->row_array();
+    }
+
+    public function get_role_permissions($role_id){
+        $query = $this->db->get_where($this->rolepermissiontable,array('role_id '=>$role_id));
+        $result = $query->result_array();
+        $data_arr = array();
+        foreach($result as $key => $res){
+            $ind = $res['menu_id'];
+            $data_arr[$ind][$res['permission']] = $res['permission_id'];
+        }
+        return $data_arr;
+    }
 }
 ?>

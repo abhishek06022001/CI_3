@@ -43,7 +43,7 @@
                                                     Add Role
                                                 </label>
                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="addrole" name="role">
+                                                    <input type="text" class="form-control" id="addrole" name="role" >
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -60,25 +60,27 @@
                                                             <tbody>
                                                                 <!-- make create update delete view ids -->
                                                                 <?php
-                                                                if ($arr != null) {
-                                                                    foreach ($arr as $key => $array) : ?>
+                                                                if ($features_data != null) {
+                                                                    foreach ($features_data as $key => $array) :
+                              
+                                                                    ?>
                                                                         <tr>
                                                                            <td id="<?php echo $array['menu_id'] ?>"><?php echo $array['Menu_title']; ?></td>
                                                                            <td style="display: flex; justify-content: space-between;">
                                                                                 <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input" type="checkbox" id="Create" value="Create" name="permission[<?php echo $array['menu_id'] ?>][]">
+                                                                                    <input class="form-check-input" type="checkbox" id="Create" value="Create" name="permission[<?php echo $array['menu_id'] ?>][]" <?php if(isset($role_permissions[$array['menu_id']]['Create'])){ echo "checked";}?>>
                                                                                     <label class="form-check-label" for="Create">Create</label>
                                                                                 </div>
                                                                                 <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input" type="checkbox" id="Update" value="Update" name="permission[<?php echo $array['menu_id'] ?>][]">
+                                                                                    <input class="form-check-input" type="checkbox" id="Update" value="Update" name="permission[<?php echo $array['menu_id'] ?>][]" <?php if(isset($role_permissions[$array['menu_id']]['Update'])){ echo "checked";}?>>
                                                                                     <label class="form-check-label" for="Update">Update</label>
                                                                                 </div>
                                                                                 <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input" type="checkbox" id="View" value="View" name="permission[<?php echo $array['menu_id'] ?>][]">
+                                                                                    <input class="form-check-input" type="checkbox" id="View" value="View" name="permission[<?php echo $array['menu_id'] ?>][]" <?php if(isset($role_permissions[$array['menu_id']]['View'])){ echo "checked";}?>>
                                                                                     <label class="form-check-label" for="View">View</label>
                                                                                 </div>
                                                                                 <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input" type="checkbox" id="Delete" value="Delete" name="permission[<?php echo $array['menu_id'] ?>][]">
+                                                                                    <input class="form-check-input" type="checkbox" id="Delete" value="Delete" name="permission[<?php echo $array['menu_id'] ?>][]" <?php if(isset($role_permissions[$array['menu_id']]['Delete'])){ echo "checked";}?>>
                                                                                     <label class="form-check-label" for="Delete">Delete</label>
                                                                                 </div>
                                                                            </td>
@@ -123,4 +125,4 @@
             }
     </script>
 </body>
-/html>
+</html>
