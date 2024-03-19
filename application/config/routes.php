@@ -51,7 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Login_c';
 $route['/'] = 'Login_c';
 $route['404_override'] = '';
-// $route['DashBoard']= 'Employee_c/index';
 $route['DashBoard']= 'Home';
 $route['login_check'] = 'Login_c/login_check';
 $route['Employees']= 'Employee_c';
@@ -73,6 +72,8 @@ $route['user-management']='User_c';
 $route['role-management']='Role_c';
 $route['addrole'] = 'Role_c/addrole';
 $route['add'] = 'Role_c/add';
+$route['add/(:any)'] = 'Role_c/add/$1';
+
 $route['deleteRole'] = 'Role_c/deleteRole';
 
 

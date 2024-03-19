@@ -57,7 +57,8 @@
                                                     <td><?php echo $key + 1; ?></td>
                                                     <td><?php echo $array['role']; ?></td>                                                  
                                                     <td>
-                                                        <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-toggle="modal" data-target="#exampleModalLong" data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['role_id'] ?>">EDIT</button>
+                                                        <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-toggle="modal" data-target="#exampleModalLong" data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['role_id'] ?>"
+                                                        onclick="window.location.href='<?php echo base_url('add/') . $array['role_id'] ?>'">EDIT</button>
                                                         <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" data-id="<?php echo $array['role_id'] ?>">Delete</button>
                                                     </td>
                                                 </tr>
@@ -71,6 +72,8 @@
                         </div>
                     </div>
                     <!-- edit functionality here  -->
+                    <!-- modal here -->
+                   
                     
                 </div>
             </main>
@@ -99,6 +102,21 @@
                     }
                 });
             });
+            // $('.editbutton').click(function(){
+            //     var ID = $(this).data('id');
+            //     alert(ID);
+            //     $.ajax({
+            //         url: "<?php echo base_url('Role_c/edit')?>",
+            //         type: "post",
+            //         data: {
+            //             'role_id': ID,
+            //         },
+            //         success: function(res){
+            //                 // window.location.href = '<?php  echo base_url('')?>';
+            //         }
+                    
+            //     })
+            // })
          });
     </script>
 

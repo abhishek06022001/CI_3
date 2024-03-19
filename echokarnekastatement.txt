@@ -1,1 +1,2 @@
-   echo "<pre>";print_r(   $_POST);echo "</pre>";exit;
+    echo "<pre>";print_r(   $_POST);echo "</pre>";exit;
+    remove trailing spaces : ^\s*$\n.

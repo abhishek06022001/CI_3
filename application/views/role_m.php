@@ -7,8 +7,7 @@
         font-size: 30px;
         color: rgb(0, 00, 0);
     }
-
-    .transparent-table {
+   .transparent-table {
         opacity: 0;
     }
 </style>
@@ -17,10 +16,8 @@
         opacity: 0;
     }
 </style>
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <?php $this->load->view('header'); ?>
-
 <body class="sb-nav-fixed">
     <?php $this->load->view('header_top'); ?>
     <div id="layoutSidenav">
@@ -31,6 +28,7 @@
                     <div class="card">
                         <div class="card-body d-flex">
                             <h2 style="color:green ;">Add Role & Permission Details</h2>
+                            <button type="button" class="btn btn-success" style="margin-left: auto;" onclick="window.location.href='<?php echo base_url('role-management')?>'">Back</button>
                         </div>
                     </div>
                     <div class="mt-4">
@@ -40,22 +38,18 @@
                                     <form action="<?php echo base_url('addrole') ?>" method="post">
                                         <div class="form-group row">
                                             <div class="row align-items-baseline">
-
-                                                <label for="addrole" class="col-sm-2 col-form-label" style="font-weight:700;font-size:xx-large">
+                                               <label for="addrole" class="col-sm-2 col-form-label" style="font-weight:700;font-size:xx-large">
                                                     <i class="fa-solid fa-id-card-clip"></i>
                                                     Add Role
                                                 </label>
-
-                                                <div class="col-sm-10">
+                                               <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="addrole" name="role">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-2"></div>
-
-                                                <div class="col-sm-10">
-
-                                                    <div class="row" style="padding:20px">
+                                               <div class="col-sm-10">
+                                                   <div class="row" style="padding:20px">
                                                         <table class="table table-hover table table-striped table-condensed table-bordered">
                                                             <thead>
                                                                 <tr>
@@ -69,10 +63,8 @@
                                                                 if ($arr != null) {
                                                                     foreach ($arr as $key => $array) : ?>
                                                                         <tr>
-
-                                                                            <td id="<?php echo $array['menu_id'] ?>"><?php echo $array['Menu_title']; ?></td>
-
-                                                                            <td style="display: flex; justify-content: space-between;">
+                                                                           <td id="<?php echo $array['menu_id'] ?>"><?php echo $array['Menu_title']; ?></td>
+                                                                           <td style="display: flex; justify-content: space-between;">
                                                                                 <div class="form-check form-check-inline">
                                                                                     <input class="form-check-input" type="checkbox" id="Create" value="Create" name="permission[<?php echo $array['menu_id'] ?>][]">
                                                                                     <label class="form-check-label" for="Create">Create</label>
@@ -89,32 +81,21 @@
                                                                                     <input class="form-check-input" type="checkbox" id="Delete" value="Delete" name="permission[<?php echo $array['menu_id'] ?>][]">
                                                                                     <label class="form-check-label" for="Delete">Delete</label>
                                                                                 </div>
-
-
-                                                                            </td>
+                                                                           </td>
                                                                         </tr>
                                                                 <?php endforeach;
                                                                 }
-
-                                                                ?>
-
-
-                                                            </tbody>
+                                                               ?>
+                                                           </tbody>
                                                         </table>
-
-                                                    </div>
+                                                   </div>
                                                 </div>
                                             </div>
-
-                                            <button type="submit" id="save" style="margin:0 auto ; width:12em" class="btn btn-primary" disabled>Primary</button>
-
-                                        </div>
+                                           <button type="submit" id="save" style="margin:0 auto ; width:12em" class="btn btn-primary" disabled>Primary</button>
+                                       </div>
                                     </form>
-
-
-                                </div>
-                                
-                            </div>
+                               </div>
+                           </div>
                         </div>
                     </div>
                 </div>
@@ -132,19 +113,14 @@
             $('#addrole').on('input', function() {
                 if (isFilled()) {
                     $('#save').removeAttr('disabled');
-
-                } else {
+               } else {
                     $('#save').prop('disabled', true);
                 }
             });
-
-        });
-        
-        function isFilled() {
+       });
+       function isFilled() {
                 return ($('#addrole').val() !== "" );
             }
     </script>
 </body>
-
-
-</html>
+/html>

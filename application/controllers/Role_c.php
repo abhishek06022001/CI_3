@@ -13,40 +13,39 @@ class Role_c extends CI_Controller
             $this->load->view('login.php');
         }
     }
-
     public function index()
     {  
         $data['arr'] = $this->Role_m->getrole();
-     
         // $data['arr2']= $this->Role_m->getperm( $data['arr']);
         // echo "<pre>";print_r($data);echo "</pre>";exit;
         return $this->load->view('Role',$data);
     }
+    public function add($role_id=''){
+       
 
-    public function add(){
-         $data['arr'] = $this->Feature_m->getdata();
-        return $this->load->view('role_m' ,$data);
+      if($role_id == NULL){
+        $data['arr'] = $this->Feature_m->getdata();
+        return $this->load->view('role_m' ,$data,$role_id);
+      }else{
+        // echo "<pre>";print_r($role_id);echo "</pre>";exit;
+        
+      }
+     // fill the data from the db using the db 
+      
     }
-    public function c(){
+    public function addrole(){
        // echo "<pre>";print_r($_POST);echo "</pre>";exit;  
         //now have got the data 
         // now after gettinf the data extract the role and add role name in the db  
         $data['role'] = $this->input->post('role');
         $data['permission'] = $this->input->post('permission');
-
         $allowed_columns = array('role');
         $insert_data = array_intersect_key($data, array_flip($allowed_columns));
-
         $role_id = $this->Role_m->save($insert_data);
         // echo "<pre>";print_r($role_id);echo "</pre>";exit;
         $this->Role_m->savePermission($data,$role_id);
         redirect('Role_c');
-        
-        
         // extract the permission array and for the menu id add the respective data for the role id 
-
-
-        
     }
     public function deleteRole(){
         $role_id= $this->input->post('role_id');
@@ -54,5 +53,11 @@ class Role_c extends CI_Controller
         // echo "<pre>";print_r($role_id);echo "</pre>";exit;
         $this->Role_m->deletedata($role_id);
         // 
+    }
+    public function edit(){
+        $role_id= $this->input->post('role_id');
+        // echo "<pre>";print_r($role_id);echo "</pre>";exit;
+        $this->add($role_id);
+
     }
 }
