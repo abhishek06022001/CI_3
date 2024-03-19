@@ -75,7 +75,7 @@ $route['add'] = 'Role_c/add';
 $route['add/(:any)'] = 'Role_c/add/$1';
 
 $route['deleteRole'] = 'Role_c/deleteRole';
-
+$route['saveEdit'] = 'Role_c/saveEdit';
 
 
 

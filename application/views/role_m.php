@@ -42,8 +42,11 @@
                                                     <i class="fa-solid fa-id-card-clip"></i>
                                                     Add Role
                                                 </label>
+                                                <input type="hidden" id="hiddenRoleId" name="hiddenRoleId" value="<?php echo isset($role_data) ? $role_data['role_id'] : ''; ?>">
+
+
                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="addrole" name="role" >
+                                                    <input type="text" class="form-control" id="addrole" name="role"  value="<?php echo isset($role_data) ? $role_data['role'] : ''; ?>" data-id ="< value="<?php echo isset($role_data) ? $role_data['role_id'] : ''; ?> >
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -65,9 +68,12 @@
                               
                                                                     ?>
                                                                         <tr>
-                                                                           <td id="<?php echo $array['menu_id'] ?>"><?php echo $array['Menu_title']; ?></td>
+                                                                            <!-- DashBoard and uska id uska table id  -->
+                                                                           <td id="<?php echo $array['menu_id'] ?>"><?php echo $array['Menu_title']; ?></td> 
+
                                                                            <td style="display: flex; justify-content: space-between;">
                                                                                 <div class="form-check form-check-inline">
+                                                                                    <!--  -->
                                                                                     <input class="form-check-input" type="checkbox" id="Create" value="Create" name="permission[<?php echo $array['menu_id'] ?>][]" <?php if(isset($role_permissions[$array['menu_id']]['Create'])){ echo "checked";}?>>
                                                                                     <label class="form-check-label" for="Create">Create</label>
                                                                                 </div>
@@ -93,7 +99,8 @@
                                                    </div>
                                                 </div>
                                             </div>
-                                           <button type="submit" id="save" style="margin:0 auto ; width:12em" class="btn btn-primary" disabled>Primary</button>
+                                           <button type="submit" id="save" style="margin:0 auto ; width:12em" class="btn btn-primary" disabled
+                                           >Submit</button>
                                        </div>
                                     </form>
                                </div>
@@ -119,6 +126,7 @@
                     $('#save').prop('disabled', true);
                 }
             });
+            
        });
        function isFilled() {
                 return ($('#addrole').val() !== "" );
