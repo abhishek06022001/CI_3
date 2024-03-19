@@ -70,6 +70,11 @@ $route['Feature']= 'Feature_c';
 $route['addFeature'] = 'Feature_c/addFeature';
 $route['deleteFeature']='Feature_c/deleteFeature';
 $route['user-management']='User_c';
+$route['role-management']='Role_c';
+$route['addrole'] = 'Role_c/addrole';
+$route['add'] = 'Role_c/add';
+$route['deleteRole'] = 'Role_c/deleteRole';
+
 
 
 

@@ -5,6 +5,7 @@ class Profile_c extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Profile_m');
+        $this->load->model('User_m');
         $this->load->library('upload');
         // $this->load->library('input');
         // can use base_url etc bcuz of this helper function.

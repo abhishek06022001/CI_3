@@ -24,26 +24,42 @@
                             <button style="margin-left: auto;" class="btn btn-lg btn-warning">Add User</button>
                         </div>
                     </div>
-                     <div>
-                            <table id="datatablesSimple" class="table table-bordered ">
-                                        <thead>
-                                            <tr>
-                                                <th >Sr.No</th>
-                                                <th >User Name</th>
-                                                <th >Role Name</th>
-                                                <th >Email</th>
-                                                <th >Permissions</th>
-                                                <th >Action</th>
-                                            </tr>
-                                        </thead>
+                    <div class="mt-4">
+                        <table id="datatablesSimple" class="table table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th>Sr.No</th>
+                                    <th>User Name</th>
+                                    <th>Role Name</th>
+                                    <th>Email</th>
+                                    <th>Permissions</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                        if ($arr != null) {
+                                            foreach ($arr as $key => $array) : ?>
+                                                <tr>
+                                                    <td><?php echo $key + 1; ?></td>
+                                                    <td><?php echo $array['Menu_title']; ?></td>
+                                                    <td><?php echo $array['label']; ?></td>
+                                                    <td>
+                                                        <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-toggle="modal" data-target="#exampleModalLong" data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['menu_id'] ?>">EDIT</button>
+                                                        <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" data-id="<?php echo $array['menu_id'] ?>">Delete</button>
+                                                    </td>
+                                                </tr>
+                                        <?php endforeach;
+                                        }
+                                            ?>
+                             </tbody>
+                        </table>
 
-                                    </table>
+                    </div>
 
-                     </div>
-                      
-                            
-                       
-                   
+
+
+
 
 
                 </div>

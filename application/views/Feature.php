@@ -26,7 +26,8 @@
                                 <div class="mb-3 mt-3 d-flex">
                                     <label for="featureName" class="col-sm-2 col-form-label lab">
                                         <i class="fa-solid fa-address-card"></i>
-                                        Feature Name</label>
+                                        Feature Name
+                                    </label>
                                     <div class="col-sm">
                                         <input type="text" class="form-control" id="featureName" name="featureName">
                                     </div>
