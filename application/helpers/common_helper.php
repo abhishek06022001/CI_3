@@ -36,5 +36,36 @@ function getCount($where){
         return array(); 
     }
 }
+function checkRolePermission($role_id,$menu_id,$permission=''){
+    $ans = false ;
+    // echo "<pre>";print_r("role_id".$role_id);echo "</pre>";
+    // echo "<pre>";print_r("menu_id".$menu_id);echo "</pre>";
+    // echo "<pre>";print_r("permission".$permission);echo "</pre>";exit;
+    // input 1 12 Create then just check the table if the table contains these entries else return false 
+    $CI = &get_instance(); 
+    $table = "role_permissions_t"; 
+    $sql = "select * from $table where role_id = ? AND menu_id= ?  AND permission= ? " ;
+    $result = $CI->db->query($sql,array($role_id,$menu_id,$permission));
+    // echo "<pre>";print_r($result);echo "</pre>";exit;
+    if($result->num_rows()>0){
+        $ans = true;
+        // return true;
+     }
+    //  /else{
+    //     return false;
+    // }
+    return $ans;    
+ }
+ function get_current_url(){
+    $CI =& get_instance();
+    return $CI->config->site_url($CI->uri->uri_string());
+ }
+ function getDatabyHref($href){
+    $CI = &get_instance(); 
+    $table = "menu_t"; 
+    $sql = "select * from $table where hreflink= ? " ;
+    $result = $CI->db->query($sql,array($href));
+    return $result->result_array();
+ }
 
 ?>

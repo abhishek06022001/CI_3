@@ -9,10 +9,8 @@
     <meta name="author" content="" />
     <title>Login - SB Admin</title>
     <link href="<?php echo base_url(); ?>assets/css/styles.css" rel="stylesheet" />
-
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-
 <body class="bg-primary">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
@@ -26,10 +24,8 @@
                                     <?php if ($this->session->flashdata('error_message')) : ?>
                                         <div class="alert alert-danger " role="alert">
                                             <?php echo $this->session->flashdata('error_message'); ?>
-                                            
                                         </div>
                                     <?php endif; ?>
-
                                 </div>
                                 <div class="card-body">
                                     <form method="post" action="<?php echo base_url("login_check") ?>">
@@ -50,7 +46,6 @@
                                             <button class="btn btn-primary" type="submit">Login</button>
                                         </div>
                                     </form>
-
                                 </div>
                                 <div class="card-footer text-center py-3">
                                     <div class="small"><a href="C:\xampp\htdocs\ci3\layout\register.html">Need an account? Sign up!</a></div>

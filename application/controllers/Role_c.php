@@ -16,8 +16,16 @@ class Role_c extends CI_Controller
     public function index()
     {  
         $data['arr'] = $this->Role_m->getrole();
-        // $data['arr2']= $this->Role_m->getperm( $data['arr']);
-        // echo "<pre>";print_r($data);echo "</pre>";exit;
+        $current_url = get_current_url();
+    // echo "Current URL: $current_url"; exit;
+    $path = parse_url($current_url, PHP_URL_PATH);
+    $pathParts = explode('/', $path);
+    $ci3Index = array_search('ci3', $pathParts);
+    $firstElementAfterCi3 = $pathParts[$ci3Index + 1];
+    // $href = $current_url
+    $data['menu'] = getDatabyHref($firstElementAfterCi3);
+    // $data['rol']= $_SESSION['role_id'];
+    // echo "<pre>";print_r($data);echo "</pre>";exit; 
         return $this->load->view('Role',$data);
     }  
     public function add($role_id=''){      
