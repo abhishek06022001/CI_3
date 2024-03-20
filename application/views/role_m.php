@@ -16,15 +16,17 @@
         opacity: 0;
     }
 </style>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <?php $this->load->view('header'); ?>
+
 <body class="sb-nav-fixed">
     <?php $this->load->view('header_top'); ?>
     <div id="layoutSidenav">
         <?php $this->load->view('sidebar'); ?>
         <div id="layoutSidenav_content">
-        <main>
-                <div class="container-md mt-5">
+            <main>
+            <div class="container-md mt-5">
                     <div class="card">
                         <div class="card-body d-flex">
                             <h2 style="color:green ;">Add Role & Permission Details</h2>
@@ -109,7 +111,6 @@
                     </div>
                 </div>
             </main>
-            
             <?php $this->load->view('footer_bottom'); ?>
         </div>
     </div>
@@ -133,5 +134,7 @@
                 return ($('#addrole').val() !== "" );
             }
     </script>
+
 </body>
+
 </html>
