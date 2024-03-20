@@ -12,9 +12,18 @@ class Role_m extends CI_Model
         // echo "<pre>";print_r($insert_id);echo "</pre>";exit; 
         return $insert_id;
     } 
+    public function update($data){
+        //echo "<pre>";print_r($data);echo "</pre>";exit;  
+        $this->db->where('role_id', $data['role_id']);
+        $rolename = $data['role'];
+        $this->db->update($this->roletable,array('role'=>$rolename));
+        // $insert_id= $this->db->insert_id();
+        // echo "<pre>";print_r($insert_id);echo "</pre>";exit; 
+        // return $insert_id;
+    } 
     public function savePermission($data , $role_id ){
         // echo "<pre>";print_r($data);echo "</pre>";exit; 
-        // echo "<pre>";print_r($role_id);echo "</pre>";exit;
+    
         foreach($data['permission'] as $key=>$value){
             foreach($value as $arr){
                 $insert_data= array(
@@ -22,6 +31,7 @@ class Role_m extends CI_Model
                     'permission' => $arr,
                     'menu_id'=>$key
                 );
+                // echo "<pre>";print_r($insert_data);echo "</pre>";exit; 
                 $this->db->insert($this->rolepermissiontable,$insert_data);
             }
         }
@@ -43,12 +53,12 @@ class Role_m extends CI_Model
     }
     public function deletedataa($role_id){
    
-        // Update rolepermissiontable
+        // delete rows from rolepermissiontable
         $this->db->where('role_id', $role_id);
         $this->db->delete($this->rolepermissiontable);
-        // Update roletable
-        $this->db->where('role_id', $role_id);
-        $this->db->delete($this->roletable);
+        // delete rows from roletable
+        // $this->db->where('role_id', $role_id);
+        // $this->db->delete($this->roletable);
     }
 
     public function get_role_data($role_id){
