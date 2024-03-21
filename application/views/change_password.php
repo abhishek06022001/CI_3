@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php $this->load->view('header'); ?>
-
 <body class="sb-nav-fixed">
     <?php $this->load->view('header_top'); ?>
     <div id="layoutSidenav">
@@ -63,15 +62,10 @@
         </div>
     </div>
     <?php $this->load->view('footer'); ?>
-
-
-
     <script>
         function validatePassword() {
-
             var newPassword = document.getElementById("new_pass").value;
             var confirmPassword = document.getElementById("new_pass1").value;
-
             if (newPassword !== confirmPassword) {
                 alert("New password and confirm password do not match!");
                 return false;
@@ -79,10 +73,8 @@
                 // alert("123");
                 //document.forms[0].submit();
                 $('#changePasswordForm').submit();
-
             }
         }
     </script>
 </body>
-
 </html>

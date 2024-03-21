@@ -10,7 +10,6 @@
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <?php $this->load->view('header'); ?>
-
 <body class="sb-nav-fixed">
     <?php $this->load->view('header_top'); 
      $menu_id = $menu[0]['menu_id'];
@@ -23,7 +22,6 @@
             <main>
                 <div class="container mt-5  ">
                     <div style="margin-bottom:5rem">
-
                         <form action="<?php echo base_url("addFeature") ?> " method="post">
                             <h6 class="addfeature">Add Feature</h6>
                             <div class="row ">
@@ -99,11 +97,9 @@
                                 </div>
                                 <div class="modal-body">
                                     <input type="hidden" style="width: 100%;" name="menu_id " id="menu_id">
-
                                     <div class="form-group">
                                         <label for="name">Feature Name</label>
                                         <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
-
                                     </div>
                                     <div class="form-group">
                                         <label for="editFeatureIcon">Feature Icon</label>
@@ -113,12 +109,8 @@
                                         <label for="editOrder">Order</label>
                                         <input type="text" class="form-control" id="editOrder">
                                     </div>
-
                                     <button type="button" class="btn btn-primary" id="save" disabled>Submit</button>
-
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -141,20 +133,16 @@
                     $('#register').prop('disabled', true);
                 }
             });
-
             function allFilled() {
-
                 return $('#featureName').val() !== "" && $('#featureIcon').val() !== ""  ;
             }
             $('#name,#editFeatureIcon,#editOrder').on('input', function() {
                 if (isFilled()) {
                     $('#save').removeAttr('disabled');
-
                 } else {
                     $('#save').prop('disabled', true);
                 }
             });
-
             function isFilled() {
                 return ($('#name').val() !== "" && $('#editFeatureIcon').val() !== "" && $('#editOrder').val() !== "");
             }
@@ -183,34 +171,26 @@
                     dataType: 'json',
                     success: function(res) {
                         console.log(res);
-
                         $('#name').val(res[0].Menu_title);
                         $('#editFeatureIcon').val(res[0].label);
                         $('#menu_id').val(res[0].menu_id);
                         $('#editOrder').val(res[0].isOrder);
-
-
                         // window.location.href = '<?php echo base_url('Feature') ?>';
                     }
                 });
-
             });
             $('#save').click(function() {
-
                 var menu_id = $("#menu_id").val();
                 // alert(menu_id);
                 var name = $('#name').val();
                 var editFeatureIcon = $('#editFeatureIcon').val();
                 var editOrder = $('#editOrder').val();
-
-
                 var data = {
                     'menu_id': menu_id,
                     'name': name,
                     'editFeatureIcon': editFeatureIcon,
                     'editOrder': editOrder
                 };
-
                 $.ajax({
                     type: 'POST',
                     url: "<?php echo base_url('Feature_c/updatebypid') ?>",
@@ -219,16 +199,9 @@
                         console.log("updated");
                         window.location.href = '<?php echo base_url('Feature') ?>';
                     }
-
                 });
-
-
-
-
             });
         });
     </script>
-
 </body>
-
 </html>

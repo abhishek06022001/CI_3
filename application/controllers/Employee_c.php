@@ -1,13 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
 require 'vendor/autoload.php';
-
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Color;
-
 class Employee_c extends CI_Controller
 {
 	public function __construct()
@@ -20,7 +17,6 @@ class Employee_c extends CI_Controller
 		$data['arr'] = $this->Employee_m->getdata();
 		$this->load->view('Employeenew', $data);
 	}
-
 	public function index()
 	{    		 		
 			$where = '';
@@ -28,34 +24,23 @@ class Employee_c extends CI_Controller
 			$wheresearchbox ='';
 			$search = '';		
 			if($this->input->post('typeSearch')!=''  ){
-				// echo "<pre>";print_r($_POST);exit;
 				$type = $this->input->post('typeSearch');
 				$where .= " AND Type='".$type."'";
 			}
 			if($this->input->post('searchbox')!=''){
 				$search = $this->input->post('searchbox');
 				$wheresearchbox .= "AND(Name LIKE '%".$search."%' OR Email LIKE '%".$search."%')" ;	
-				// $this->session->unset_userdata('searchbox');
 				empty($_POST);
 			}		
 			$where.=$wheresearchbox;
-			// echo "<pre>";print_r($where);exit;
-			// echo "<pre>";print_r($where);exit;// prints AND Name='abhishek'
 			$data['arr'] = $this->Employee_m->getdata($where);
-			// print_r($data);
-			// exit;
 			$data['typeSearch'] = $type;	
-			//access management task 
 			$current_url = get_current_url();
-    // echo "Current URL: $current_url"; exit;
     $path = parse_url($current_url, PHP_URL_PATH);
     $pathParts = explode('/', $path);
     $ci3Index = array_search('ci3', $pathParts);
     $firstElementAfterCi3 = $pathParts[$ci3Index + 1];
-    // $href = $current_url
     $data['menu'] = getDatabyHref($firstElementAfterCi3);
-			
-
 			$this->load->view('Employeenew', $data);	
 	}
 	public function getbyid()
@@ -66,7 +51,6 @@ class Employee_c extends CI_Controller
 	}
 	public function addemployee()
 	{	
-		// echo "<pre>";print_r($_POST);exit;
 		$Name = $this->input->post('Name');
 		$Phone = $this->input->post('Phone');
 		$emp_t_id = $this->input->post('emp_t_id');
@@ -89,20 +73,15 @@ class Employee_c extends CI_Controller
 		}
 	}
 	public function typeSearch(){   
-		// echo '<script>alert("Invalid file");</script>';	
 		// get data by the type  into an array 
 		// then load the data 
 		$data['arr'] = $this->Employee_m->getdatabytype(1);	
 		$this->load->view('Employeenew', $data);		
-		// print_r($data);
-		// exit;
 	}
 	public function serchType($data)
 	{
 		$this->load->view('Employeenew', $data);	
 	}
-	
-
 	public function editemployee()
 	{
 		$data = $this->input->post();
@@ -124,8 +103,6 @@ class Employee_c extends CI_Controller
 	{
 		$data['arr'] = $this->Employee_m->getdata();
 		// got complete all cols from database
-		// print_r($data['arr']);  
-		// exit;
 		// change the DOB format here 
 		// col titles
 		$columnTitles = array('Name', 'Phone', 'Email', 'Type', 'DOB', 'DOJ');
@@ -157,7 +134,6 @@ class Employee_c extends CI_Controller
 		$spreadsheet->getActiveSheet()->getStyle($cellrange)->getFont()->getColor()->setARGB(Color::COLOR_WHITE);
 		// inserrt all the rows from A2	
 		$spreadsheet->getActiveSheet()->fromArray($selectedData, null, 'A2');
-
 		$writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		header('Content-Disposition: attachment;filename="export.xlsx"');
@@ -173,16 +149,12 @@ class Employee_c extends CI_Controller
 			$file_ext = pathinfo($fileName, PATHINFO_EXTENSION);
 			$allowed_ext = ['xls', 'csv', 'xlsx'];
 			if (in_array($file_ext, $allowed_ext)) {
-				// take data into an array and 
 				$inputFileNamePath = $_FILES['import_file']['tmp_name'];
 				$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileNamePath);
 				$data = $spreadsheet->getActiveSheet()->toArray();
-				// print_r($data);
-				// exit;
 				// now insert all data in the database right
 				// but how ? make a function in model 
 				$this->Employee_m->insertindb($data);
-			
 				echo '<script>window.location.href = "' . base_url('empnew') . '";</script>';
 				exit;
 			} else {

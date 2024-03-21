@@ -19,11 +19,9 @@
                 <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                 <li><a class="dropdown-item" href="<?php echo base_url('profile')?>">Profile</a></li>
                 <li><a class="dropdown-item" href="<?php echo base_url('change_password')?>">Change Password</a></li>
-
                 <li><hr class="dropdown-divider" /></li>
                 <li><a class="dropdown-item" href="<?php echo base_url('logout')?>">Logout</a></li>
             </ul>
         </li>
     </ul>
 </nav>
-

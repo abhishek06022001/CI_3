@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- #region -->
-
     <?php $this->load->view('header'); ?>
-   
 <style>
     /*Profile Pic Start*/
 .picture-container{
@@ -48,10 +46,8 @@
     top: 0;
     width: 100%;
 }
-
 .picture-src{
     width: 100%;
-    
 }
 /*Profile Pic End*/
 </style> 
@@ -73,7 +69,6 @@
                                     <form action="<?php echo base_url('update') ?>" method="post" enctype="multipart/form-data">
                                         <input type="hidden" class="form-control" id="sel_state_id" name="sel_state_id" value="<?php if (isset($arr['state_id']) && $arr['state_id'] != '') {
                                                                                                                                     echo $arr['state_id'];
-                              
                               } ?>">
                                         <input type="hidden" class="form-control" id="sel_city_id" name="sel_city_id" value="<?php if (isset($arr['city_id']) && $arr['city_id'] != '') {
                                                                                                                                     echo $arr['city_id'];
@@ -94,7 +89,6 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="fname" class="form-label">FIRST NAME</label>
-
                                                 <input type="text" class="form-control" id="fname" name="fname" value="<?php if (isset($arr['f_name']) && $arr['f_name'] != '') {echo trim($arr['f_name']);} ?>">
                                             </div>
                                             <div class="col-md-6">
@@ -122,12 +116,10 @@
                                         <div class="row ">
                                             <div class="col-md-6">
                                                 <legend class="col-form-label col-sm-2 pt-0   " name="gender">Gender</legend>&nbsp;&nbsp;&nbsp;
-                                            
                                                     <input type="radio" class="form-check-input" id="radio1" name="optradio" value="1" checked> Male 
                                                     <label class="form-check-label" for="radio1"></label>&nbsp;&nbsp;&nbsp;
                                                     <input type="radio" class="form-check-input" id="radio2" name="optradio" value="2"> Female
                                                     <label class="form-check-label" for="radio2"></label>
-                                                
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="col">
@@ -154,7 +146,6 @@
                                                         if ($country['country_id'] == $arr['country_id']) {
                                                             $selected = 'selected';
                                                         }
-                                                        
                                                         ?>
                                                         <option value="<?= $countryid ?>" <?php echo $selected; ?>><?= $countryname ?></option>
                                                     <?php endforeach; ?>
@@ -172,7 +163,6 @@
                                                                             $statename = $arr['state_name'];
                                                                         }                                                          
                                                                 ?>
-                                                    
                                                     <option value="<?php echo $statename ?>"><?php echo $statename ?></option>
                                                 </select>
                                             </div>
@@ -187,7 +177,6 @@
                                                         $cityid = $arr['city_id'];
                                                         $cityname = $arr['city_name'];
                                                     }
-                                                        
                                                     ?>
                                                     <option value="<?php echo $cityid ?>"><?php echo $cityname ?> </option>
                                                 </select>
@@ -219,19 +208,15 @@
                 function readURL(input) {
                     if (input.files && input.files[0]) {
                         var reader = new FileReader();
-
                         reader.onload = function (e) {
                             $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
                         }
                         reader.readAsDataURL(input.files[0]);
                     }
                 }
-            
-
                 $(document).ready(function() {
                     var country_id = $("#country").val();
                     var state_id = $("#sel_state_id").val();
-
                     if (country_id != '' && country_id != undefined && country_id != 0) {
                         get_states(country_id, state_id);
                     }
@@ -252,9 +237,7 @@
                         var state_id = $(this).val();
                         get_city(state_id);
                     });
-
                 })
-
                 $(document).ready(function() {
                     $('#state').on('change', function() {
                         var state_id = $(this).val();
@@ -279,7 +262,6 @@
                 function readURL(input) {
                     if (input.files && input.files[0]) {
                         var reader = new FileReader();
-
                         reader.onload = function(e) {
                             $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
                         }
@@ -319,7 +301,6 @@
                         }
                     });
                 }
-
          </script>
         </body>
 </html>

@@ -25,7 +25,6 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="fname" class="form-label">FIRST NAME</label>
-
                                     <input type="text" class="form-control" id="fname" name="fname" value="<?php if (isset($arr['f_name']) && $arr['f_name'] != '') {echo trim($arr['f_name']);} ?>">
                                 </div>
                                 <div class="col-md-6">
@@ -53,18 +52,15 @@
                             <div class="row ">
                                 <div class="col-md-6">
                                     <legend class="col-form-label col-sm-2 pt-0   " name="gender">Gender</legend>&nbsp;&nbsp;&nbsp;
-                                  
                                         <input type="radio" class="form-check-input" id="radio1" name="optradio" value="1" checked> Male 
                                         <label class="form-check-label" for="radio1"></label>&nbsp;&nbsp;&nbsp;
                                         <input type="radio" class="form-check-input" id="radio2" name="optradio" value="2"> Female
                                         <label class="form-check-label" for="radio2"></label>
-                                    
                                 </div>
                                 <div class="col-md-6">
                                     <div class="col">
                                         <label for="exampleFormControlTextarea1" class="form-label ">ADDRESS :</label>
                                         <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="3"><?php if (isset($arr['address']) && $arr['address']!= ''){echo $arr['address']; }?></textarea>
-
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +82,6 @@
                                             if ($country['country_id'] == $arr['country_id']) {
                                                 $selected = 'selected';
                                             }
-                                            
                                             ?>
                                             <option value="<?= $countryid ?>" <?php echo $selected; ?>><?= $countryname ?></option>
                                         <?php endforeach; ?>
@@ -104,7 +99,6 @@
                                                                 $statename = $arr['state_name'];
                                                             }                                                          
                                                             ?>
-                                        
                                         <option value="<?php echo $statename ?>"><?php echo $statename ?></option>
                                     </select>
                                 </div>
@@ -119,7 +113,6 @@
                                               $cityid = $arr['city_id'];
                                               $cityname = $arr['city_name'];
                                            }
-                                            
                                         ?>
                                         <option value="<?php echo $cityid ?>"><?php echo $cityname ?> </option>
                                     </select>

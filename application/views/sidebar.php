@@ -2,18 +2,13 @@
 $menu_arr = getMenuItems(0); // table se data laega ye specific parent id k hisab se 
 $id = 0;
 ?>
-
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-            
                 <?php foreach ($menu_arr as $key => $menu) { //  array hena php ka so 0=>dashboard , 1=> Layouts etc type rahega ...
                     //key is 0,1,2,3 which represents the database
-            //  
                     $child_menu = getMenuItems($menu['menu_id']);
-                    
-                    // echo "<pre>";print_r("hey");echo "</pre>";exit;
                     // menu id me menu id hai and im storing in child data                    
                     $collapsed = '';
                     $href = '';
@@ -24,32 +19,21 @@ $id = 0;
                         $datacolpase = 'data-bs-toggle="collapse" data-bs-target="#collapse' . $key . '" aria-expanded="false" aria-controls="collapse' . $key . '"';
                     }
                     ?>
-                
                     <!-- here is the data that is getting shown on sidebar  -->
-                   
                     <?php 
                      $role_id = $_SESSION['role_id'];
-                     
-                 
                      if(checkRolePermission($role_id,$menu['menu_id'] ,'View')){
                         ?>
                        <!-- if true only  -->
                         <a class="nav-link <?php echo $collapsed; ?>" href="<?php echo $menu['hreflink']; ?>" <?php echo $datacolpase; ?>>
-                        
                         <div class="sb-nav-link-icon">
                                     <i class="<?php echo $menu['label'] ?>"></i>
                         </div>
                         <?php echo $menu['Menu_title']; ?>
-                               
                         </a>
                         <?php
                     }
-              
-                    
                     ?>
-                 
-
-                    
                     <?php if ($child_menu) { ?>
                         <div class="collapse" id="collapse<?php echo $key; ?>" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">

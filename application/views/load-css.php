@@ -12,6 +12,4 @@ while ($row = mysqli_fetch_assoc($query)) {
     $str .= "<option value='{$row['country_id']}'>{$row['country_name']}</option>";
 }
 echo $str;
-
-
 ?>

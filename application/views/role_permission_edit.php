@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- #region -->
 <style>
     .addfeature {
         font-family: Copperplate, Papyrus, fantasy;
@@ -16,10 +15,7 @@
         opacity: 0;
     }
 </style>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <?php $this->load->view('header'); ?>
-
 <body class="sb-nav-fixed">
     <?php $this->load->view('header_top'); ?>
     <div id="layoutSidenav">
@@ -45,8 +41,6 @@
                                                     Add Role
                                                 </label>
                                                 <input type="hidden" id="hiddenRoleId" name="hiddenRoleId" value="<?php echo isset($role_data) ? $role_data['role_id'] : ''; ?>">
-
-
                                                <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="addrole" name="role"  value="<?php echo isset($role_data) ? $role_data['role'] : ''; ?>" data-id ="< value="<?php echo isset($role_data) ? $role_data['role_id'] : ''; ?> >
                                                 </div>
@@ -67,12 +61,10 @@
                                                                 <?php
                                                                 if ($features_data != null) {
                                                                     foreach ($features_data as $key => $array) :
-                              
                                                                     ?>
                                                                         <tr>
                                                                             <!-- DashBoard and uska id uska table id  -->
                                                                            <td id="<?php echo $array['menu_id'] ?>"><?php echo $array['Menu_title']; ?></td> 
-
                                                                            <td style="display: flex; justify-content: space-between;">
                                                                                 <div class="form-check form-check-inline">
                                                                                     <!--  -->
@@ -128,13 +120,10 @@
                     $('#save').prop('disabled', true);
                 }
             });
-            
        });
        function isFilled() {
                 return ($('#addrole').val() !== "" );
             }
     </script>
-
 </body>
-
 </html>

@@ -43,8 +43,6 @@
                                                     Add Role
                                                 </label>
                                                 <input type="hidden" id="hiddenRoleId" name="hiddenRoleId" value="<?php echo isset($role_data) ? $role_data['role_id'] : ''; ?>">
-
-
                                                <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="addrole" name="role"  value="<?php echo isset($role_data) ? $role_data['role'] : ''; ?>" data-id ="< value="<?php echo isset($role_data) ? $role_data['role_id'] : ''; ?> >
                                                 </div>
@@ -65,12 +63,10 @@
                                                                 <?php
                                                                 if ($features_data != null) {
                                                                     foreach ($features_data as $key => $array) :
-                              
                                                                     ?>
                                                                         <tr>
                                                                             <!-- DashBoard and uska id uska table id  -->
                                                                            <td id="<?php echo $array['menu_id'] ?>"><?php echo $array['Menu_title']; ?></td> 
-
                                                                            <td style="display: flex; justify-content: space-between;">
                                                                                 <div class="form-check form-check-inline">
                                                                                     <!--  -->
@@ -109,7 +105,6 @@
                     </div>
                 </div>
             </main>
-            
             <?php $this->load->view('footer_bottom'); ?>
         </div>
     </div>
@@ -127,7 +122,6 @@
                     $('#save').prop('disabled', true);
                 }
             });
-            
        });
        function isFilled() {
                 return ($('#addrole').val() !== "" );

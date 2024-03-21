@@ -1,4 +1,3 @@
-
 <style>
     .picture-container{
     position: relative;
@@ -42,10 +41,8 @@
     top: 0;
     width: 100%;
 }
-
 .picture-src{
     width: 100%;
-    
 }
 </style>
 <div class="container">
@@ -55,7 +52,6 @@
             <input type="file" id="wizard-picture" class="">
         </div>
          <h6 class="">Choose Picture</h6>
-
     </div>
 </div>
 <script>
@@ -68,7 +64,6 @@
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-
         reader.onload = function (e) {
             $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
         }
