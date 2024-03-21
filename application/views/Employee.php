@@ -9,7 +9,9 @@
 </style>
 
 <body class="sb-nav-fixed">
-    <?php $this->load->view('header_top'); ?>
+    <?php $this->load->view('header_top'); 
+    
+    ?>
     <div id="layoutSidenav">
         <?php $this->load->view('sidebar'); ?>
         <div id="layoutSidenav_content">

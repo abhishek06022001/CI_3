@@ -11,6 +11,14 @@ class Feature_c extends CI_Controller
 	}
     public function Index(){
 		$data['arr'] = $this->Feature_m->getdata();
+		$current_url = get_current_url();
+    // echo "Current URL: $current_url"; exit;
+    $path = parse_url($current_url, PHP_URL_PATH);
+    $pathParts = explode('/', $path);
+    $ci3Index = array_search('ci3', $pathParts);
+    $firstElementAfterCi3 = $pathParts[$ci3Index + 1];
+    // $href = $current_url
+    $data['menu'] = getDatabyHref($firstElementAfterCi3);
 
         $this->load->view('Feature',$data);
     }

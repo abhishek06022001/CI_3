@@ -12,7 +12,11 @@
 <?php $this->load->view('header'); ?>
 
 <body class="sb-nav-fixed">
-    <?php $this->load->view('header_top'); ?>
+    <?php $this->load->view('header_top'); 
+     $menu_id = $menu[0]['menu_id'];
+     $role_id = $_SESSION['role_id'];
+    //  echo "<pre>";print_r($role_id);echo "</pre>";exit; 
+    ?>
     <div id="layoutSidenav">
         <?php $this->load->view('sidebar'); ?>
         <div id="layoutSidenav_content">
@@ -44,7 +48,10 @@
                             <div class="alert alert-warning" role="alert">
                                 Enter the icon class from <a href="https://fontawesome.com/search" target="_blank">this page</a>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block " id="register" disabled value="Register">Submit</button>
+                            <button type="submit" class="btn btn-primary btn-block " id="register" disabled value="Register"
+                            <?php if (!checkRolePermission($role_id, $menu_id, 'Create')) {
+                                       echo "hidden";}?>
+                            >Submit</button>
                         </form>
                     </div>
                     <!-- table  addd here-->
@@ -66,8 +73,14 @@
                                         <td><?php echo $array['Menu_title']; ?></td>
                                         <td><?php echo $array['label']; ?></td>
                                         <td>
-                                            <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-toggle="modal" data-target="#exampleModalLong" data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['menu_id'] ?>">EDIT</button>
-                                            <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" data-id="<?php echo $array['menu_id'] ?>">Delete</button>
+                                            <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-toggle="modal" data-target="#exampleModalLong" data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['menu_id'] ?>"
+                                            <?php if (!checkRolePermission($role_id, $menu_id, 'Update')) {
+                                       echo "hidden";}?>
+                                            >EDIT</button>
+                                            <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" data-id="<?php echo $array['menu_id'] ?>"
+                                            <?php if (!checkRolePermission($role_id, $menu_id, 'Delete')) {
+                                       echo "hidden";}?>
+                                            >Delete</button>
                                         </td>
                                     </tr>
                             <?php endforeach;

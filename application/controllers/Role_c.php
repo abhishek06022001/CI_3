@@ -29,8 +29,7 @@ class Role_c extends CI_Controller
         return $this->load->view('Role',$data);
     }  
     public function add($role_id=''){      
-        $data['features_data'] = $this->Feature_m->getdata();
-      
+        $data['features_data'] = $this->Feature_m->getdata();      
         /**
          * got the data here from the feature sidebar and number  is index and the array is the feature  table array 
          */

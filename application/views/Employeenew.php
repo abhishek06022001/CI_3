@@ -13,7 +13,10 @@
     }
 </style>
 <body class="sb-nav-fixed">
-    <?php $this->load->view('header_top'); ?>
+    <?php $this->load->view('header_top'); 
+       $menu_id = $menu[0]['menu_id'];
+       $role_id = $_SESSION['role_id'];
+    ?>
     <div id="layoutSidenav">
         <?php $this->load->view('sidebar'); ?>
         <div id="layoutSidenav_content">
@@ -71,7 +74,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <button class="btn btn-success addemp" data-bs-toggle="modal" data-bs-target="#exampleModaladd" style="float: right;">Add Employee</button>
+                                        <button class="btn btn-success addemp" data-bs-toggle="modal" data-bs-target="#exampleModaladd" style="float: right;"
+                                        <?php if (!checkRolePermission($role_id, $menu_id, 'Create')) {
+                                       echo "hidden";}?>
+                                        >Add Employee</button>
                                     </div>
                                 </div>
                             </div>
@@ -109,8 +115,14 @@
                                                     <td><?php echo $array['DOJ']; ?></td>
                                                     <td><?php echo $array['DOB']; ?></td>
                                                     <td>
-                                                        <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['emp_t_id'] ?>">EDIT</button>
-                                                        <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" data-id="<?php echo $array['emp_t_id'] ?>">Delete</button>
+                                                        <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['emp_t_id'] ?>"
+                                                        <?php if (!checkRolePermission($role_id, $menu_id, 'Update')) {
+                                       echo "hidden";}?>
+                                                        >EDIT</button>
+                                                        <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" data-id="<?php echo $array['emp_t_id'] ?>"
+                                                        <?php if (!checkRolePermission($role_id, $menu_id, 'Delete')) {
+                                       echo "hidden";}?>
+                                                        >Delete</button>
                                                     </td>
                                                 </tr>
                                         <?php endforeach;
@@ -127,7 +139,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                    
+                                    ></button>
                                 </div>
                                 <div class="modal-body">
                                     <input type="hidden" style="width: 100%;" name="emp_t_id " id="emp_t_id">
