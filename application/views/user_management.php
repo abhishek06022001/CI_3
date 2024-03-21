@@ -26,7 +26,7 @@ $user_id = $_SESSION['user_id'];
                     <div class="card">
                         <div class="card-body d-flex">
                             <h2 style="color:green ;">User List</h2>
-                            <button style="margin-left: auto;" class="btn btn-lg btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModaladd"  data-id="<?php echo $user_id ?>">Add User</button>
+                            <button style="margin-left: auto;" class="btn btn-lg btn-warning addemp " data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $user_id ?>">Add User</button>
                         </div>
                     </div>
                     <div class="mt-4">
@@ -60,61 +60,52 @@ $user_id = $_SESSION['user_id'];
                                 <?php endforeach;
                                 }
                                 ?>
-                                 <!-- ADD/EDIT MODAL HERE -->
-                    <div class="modal fade" id="exampleModaladd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                    ></button>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="hidden" style="width: 100%;" name="emp_t_id " id="emp_t_id">
-                                    <div class="form-group row  mb-2">
-                                        <div class="row">
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">User Name</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" style="width: 100%;" class="form-control" name="Name" id="Name" required>
+                                <!-- ADD/EDIT MODAL HERE -->
+                                <div class="modal fade" id="exampleModaladd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">PhoneNumber</label>
-                                            <div class="col-sm-4">
-                                                <input type="number" style="width: 100%;" class="form-control" name="Phone" id="Phone" maxlength="10" required>
+                                            <div class="modal-body">
+                                                <input type="hidden" style="width: 100%;" name="emp_t_id " id="emp_t_id">
+                                                <div class="form-group row  mb-2">
+                                                    <form>
+                                                        <div class="form-group row  mb-2">
+                                                            <div class="row mb-4">
+                                                                <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+                                                                <div class="col">
+                                                                    <input type="text" style="width: 100%;" class="form-control" name="Name" id="Name" required>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row mb-4">
+                                                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                                                <div class="col-sm">
+                                                                    <input type="text" style="width: 100%;" id="Email" name="Email" class="form-control" required>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row mb-4">
+                                                                <label for="staticEmail" class="col-sm-3 col-form-label">Role Name</label>
+                                                                <div class="col-sm">
+                                                                    <select name="role_name" id="role_name" class="form-control">
+                                                                        <option value="" disabled selected>Select a Role</option>
+                                                                        
+
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary addempsave" id="addemp">Save Changes</button>
+                                                        </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" style="width: 100%;" id="Email" name="Email" class="form-control" required>
-                                            </div>
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">Type</label>
-                                            <div class="col-sm-4">
-                                                <select name="Type" id="Type" class="form-control">
-                                                    <option value="" disabled selected>Select type</option>
-                                                    <option value="0" id="option_part_time">PART TIME</option>
-                                                    <option value="1" id="option_full_time">FULL TIME</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">DOB</label>
-                                            <div class="col-sm-4">
-                                                <input type="date" name="DOB" id="DOB" class="form-control" required>
-                                            </div>
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">DOJ</label>
-                                            <div class="col-sm-4">
-                                                <input type="date" name="DOJ" id="DOJ" class="form-control" max="<?php echo date("Y-m-d"); ?>" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary addempsave" id="addemp">Save Changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                             </tbody>
                         </table>
                     </div>
@@ -125,8 +116,43 @@ $user_id = $_SESSION['user_id'];
     </div>
     <?php $this->load->view('footer'); ?>
     <script>
-        // the modal logic here !
+        $(document).ready(function() {
+           
+          $('.addemp').click(function(){
+            $('#exampleModalLabel').html('ADD USER');
+            $('#Name').val('');
+            $('#Email').val('');
+            // $('#role_name').val('');
+            
+            $val = true;
+            // var ID = $(this).data('id');
+            // alert(ID); got the user id which is from the users table 
 
+          });
+          //dropdown logic 
+            $('#role_name').on('click',function(){
+               if($val){
+                $.ajax({
+                  url: "<?php echo base_url('User_c/get_roles');?>",
+                  type:"post",
+                  dataType: 'json',
+                  success: function(res){
+                    console.log(res);
+                    $('#role_name').empty();
+                    // append empty 
+                    $('#role_name').append(' <option value="" disabled selected> Select A Role </option>');
+                    //append the rest values here 
+                    $.each(res.role,function(index,role){
+                        $('#role_name').append('<option value="' +role.role_id+ '">'+ role.role+ '</option>' );
+                       
+                    });
+                  }
+                });
+               };
+               $val = false;
+            });
+
+        });
     </script>
 </body>
 

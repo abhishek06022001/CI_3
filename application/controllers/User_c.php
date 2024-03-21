@@ -30,4 +30,9 @@ class User_c extends CI_Controller
         // echo "<pre>";print_r($data['joined']);echo "</pre>";exit;
         return $this->load->view('user_management',$data);
     }
+    public function get_roles(){
+        $data['role'] = $this->User_m->get_role_table_data();
+        echo json_encode($data);
+        
+    }
 }
