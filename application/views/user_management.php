@@ -141,6 +141,7 @@ $user_id = $_SESSION['user_id'];
                 };
                 $val = false;
             });
+            
             $('.addempsave').on('click', function() {
                 var userid = $('#user_id').val();
                 // alert(userid);
@@ -155,7 +156,7 @@ $user_id = $_SESSION['user_id'];
                     'username': username,
                     'Email': Email,
                     'role_id': role_name, // role id was 36 
-                    'user_id': username
+                    'user_id': userid
                 }   
                 // echo "<pre>";print_r(   $data);echo "</pre>";exit;
 
@@ -167,9 +168,23 @@ $user_id = $_SESSION['user_id'];
                     data: data,
                     success: function(response) {
                         console.log(response);
-                        // window.location.href = "<?php echo base_url('User_c') ?>";
+                        window.location.href = "<?php echo base_url('User_c') ?>";
                     }
                 });
+            });
+            $('.deletebutton').click(function(){
+                    var ID = $(this).data('id');
+                    alert(ID);
+                    $.ajax({
+                        url: "<?php echo base_url('User_c/delete_user'); ?>",
+                        type:"post",
+                        data:{
+                            'ID':ID
+                        },
+                        success: function(res){
+                            window.location.href = "<?php echo base_url('User_c') ?>";
+                        }
+                    })
             });
             $('.editbutton').click(function() {
                 $('#exampleModalLabel').html('Edit Employee');

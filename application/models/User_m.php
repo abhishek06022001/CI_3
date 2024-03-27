@@ -28,7 +28,9 @@ class User_m extends CI_Model
     {
         $l = 'users_t';
         $r = 'roles_t';
-        $sql = "select $l.username,$l.user_id ,$l.Email ,$r.role from $l left join $r on $l.role_id = $r.role_id   ";
+        $sql = "select $l.username,$l.user_id ,$l.Email ,$r.role from $l left join $r on $l.role_id = $r.role_id
+        where $l.isDeleted = 0 
+        ";
         $result = $this->db->query($sql);
         if ($result) {
             return $result->result_array();
@@ -37,9 +39,10 @@ class User_m extends CI_Model
         }
     }
     public function saveData($data, $user_id)
-    {  
+    {    
+        // echo "<pre>";print_r($data);"</pre>";exit;
         if ($user_id != "") {
-            echo "<pre>";print_r($user_id);echo "</pre>";exit;
+            // echo "<pre>";print_r($user_id);echo "</pre>";exit;
             $this->db->where('user_id', $user_id);
             $this->db->update($this->users_table, $data);
         } else {
@@ -53,6 +56,13 @@ class User_m extends CI_Model
         }else {
             return null;
         }
+    }
+    public function deleteUser($user_id){
+        $data = array(
+            'isdeleted' => 1
+        );
+        $this->db->where('user_id', $user_id);
+        $this->db->update($this->users_table, $data);
     }
     
    

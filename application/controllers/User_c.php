@@ -28,7 +28,7 @@ class User_c extends CI_Controller
         $data['user'] = $this->User_m->get_user_table_data();
         $data['permissions'] = $this->User_m->get_permission_table_data();
         $data['joined'] = $this->User_m->getAllData();
-        // echo "<pre>";print_r($data);echo "</pre>";exit;
+        // echo "<pre>";print_r($data['user']);echo "</pre>";exit;
         return $this->load->view('user_management', $data);
     }
     public function get_roles()
@@ -55,6 +55,7 @@ class User_c extends CI_Controller
         // echo "<pre>";print_r($data);echo "</pre>";exit;
         $this->User_m->saveData($data, $user_id);
     }
+
     public function generate_password()
     {
         $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -73,4 +74,9 @@ class User_c extends CI_Controller
         // echo "<pre>";print_r($data);echo "</pre>";exit;
         echo json_encode($data);
     }
+    public function delete_user(){
+        $user_id = $this->input->post('ID');
+        $this->User_m->deleteUser($user_id);
+    }
+
 }
