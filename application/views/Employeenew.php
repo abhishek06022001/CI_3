@@ -302,7 +302,6 @@
                     'Name': Name,
                     'Phone': Phone,
                     'emp_t_id': emp_t_id,
-                    // 'Place': Place,
                     'Email': Email,
                     'Type': Type,
                     'DOB': DOB,
