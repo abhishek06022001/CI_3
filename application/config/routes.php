@@ -76,6 +76,7 @@ $route['add/(:any)'] = 'Role_c/add/$1';
 
 $route['deleteRole'] = 'Role_c/deleteRole';
 $route['saveEdit'] = 'Role_c/saveEdit';
+$route['user_permissions/(:any)'] = 'User_c/view_user_permissions/$1';
 
 
 

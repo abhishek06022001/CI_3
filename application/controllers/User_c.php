@@ -10,6 +10,7 @@ class User_c extends CI_Controller
         $this->load->model('Profile_m');
         $this->load->model('User_m');
         $this->load->model('Role_m');
+        $this->load->model('Feature_m');
         $this->load->library('upload');
         // $this->load->library('input');
         if ($this->session->userdata('user_id') == null) {
@@ -30,6 +31,23 @@ class User_c extends CI_Controller
         $data['joined'] = $this->User_m->getAllData();
         // echo "<pre>";print_r($data['user']);echo "</pre>";exit;
         return $this->load->view('user_management', $data);
+    }
+    public function view_user_permissions($user_id =''){
+        $data['features_data'] = $this->Feature_m->getdata();
+        $role_id = $this->User_m->getRoleId($user_id);
+        
+        $condition = $this->User_m->ifUserPermContains($user_id);
+
+        if ($condition) {
+      
+            $data['user_perm'] = $this->User_m->get_permissions($user_id); //  got 
+        }else{
+     
+            $data['user_perm']= $this->Role_m->get_role_permissions($role_id);
+        }
+        $data['user_id']= $user_id;
+   
+        return $this->load->view('user_permission',$data);
     }
     public function get_roles()
     {
@@ -52,7 +70,7 @@ class User_c extends CI_Controller
             'password' => $new_password,
             'user_id' =>$user_id
         );
-        // echo "<pre>";print_r($data);echo "</pre>";exit;
+
         $this->User_m->saveData($data, $user_id);
     }
 
@@ -78,5 +96,5 @@ class User_c extends CI_Controller
         $user_id = $this->input->post('ID');
         $this->User_m->deleteUser($user_id);
     }
-
+   
 }

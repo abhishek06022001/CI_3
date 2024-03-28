@@ -8,7 +8,7 @@
         color: rgb(0, 00, 0);
     }
 </style>
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+
 <?php $this->load->view('header');
 ?>
 <?php
@@ -49,7 +49,8 @@ $user_id = $_SESSION['user_id'];
                                             <td><?php echo $array['username']; ?></td>
                                             <td><?php echo $array['role']; ?></td>
                                             <td><?php echo $array['Email']; ?></td>
-                                            <td><button class="col btn btn-dark btn-sm editbutton " data-toggle="modal" data-target="#exampleModalLong" data-bs-toggle="modal" data-bs-target="#viewmodal" data-id="<?php echo $array['user_id'] ?>">VIEW AND EDIT</button>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="modal" onclick="window.location.href='<?php echo base_url('user_permissions/').$array['user_id']?>'" data-bs-target="#exampleModal" data-id="<?php echo $array['user_id'] ?>">VIEW AND EDIT</button>
                                             </td>
                                             <td>
                                                 <button class="col btn  btn-info btn editbutton " data-toggle="modal" data-target="#exampleModalLong" data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['user_id'] ?>">EDIT</button>
@@ -68,7 +69,7 @@ $user_id = $_SESSION['user_id'];
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <input  type="hidden" style="width: 100%;" name="user_id " id="user_id">
+                                                <input type="hidden" style="width: 100%;" name="user_id " id="user_id">
                                                 <div class="form-group row  mb-2">
                                                     <form>
                                                         <div class="form-group row  mb-2">
@@ -103,9 +104,14 @@ $user_id = $_SESSION['user_id'];
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+
+
                             </tbody>
                         </table>
                     </div>
+
+
                 </div>
             </main>
             <?php $this->load->view('footer_bottom'); ?>
@@ -123,7 +129,7 @@ $user_id = $_SESSION['user_id'];
                 $('#user_id').val('');
                 $val = true;
             });
-            //dropdown logic 
+
             $('#role_name').on('click', function() {
                 if ($val) {
                     $.ajax({
@@ -141,27 +147,28 @@ $user_id = $_SESSION['user_id'];
                 };
                 $val = false;
             });
-            
+            $('.view').click(function() {
+
+
+            });
+
             $('.addempsave').on('click', function() {
                 var userid = $('#user_id').val();
-                // alert(userid);
+
                 var username = $('#Name').val();
-                // alert(username);
-              
+
+
                 var Email = $('#Email').val();
-                // alert(Email);
+
                 var role_name = $('#role_name').val();
-                // alert(role_name);
+
                 let data = {
                     'username': username,
                     'Email': Email,
                     'role_id': role_name, // role id was 36 
                     'user_id': userid
-                }   
-                // echo "<pre>";print_r(   $data);echo "</pre>";exit;
+                }
 
-                // i am getting all the data here !
-                    
                 $.ajax({
                     type: 'POST',
                     url: "<?php echo base_url('User_c/add_user') ?>",
@@ -172,19 +179,19 @@ $user_id = $_SESSION['user_id'];
                     }
                 });
             });
-            $('.deletebutton').click(function(){
-                    var ID = $(this).data('id');
-                    alert(ID);
-                    $.ajax({
-                        url: "<?php echo base_url('User_c/delete_user'); ?>",
-                        type:"post",
-                        data:{
-                            'ID':ID
-                        },
-                        success: function(res){
-                            window.location.href = "<?php echo base_url('User_c') ?>";
-                        }
-                    })
+            $('.deletebutton').click(function() {
+                var ID = $(this).data('id');
+                // alert(ID);
+                $.ajax({
+                    url: "<?php echo base_url('User_c/delete_user'); ?>",
+                    type: "post",
+                    data: {
+                        'ID': ID
+                    },
+                    success: function(res) {
+                        window.location.href = "<?php echo base_url('User_c') ?>";
+                    }
+                })
             });
             $('.editbutton').click(function() {
                 $('#exampleModalLabel').html('Edit Employee');
@@ -203,13 +210,9 @@ $user_id = $_SESSION['user_id'];
                         $('#Email').val(res.user_arr.Email);
                         $('#role_id').val(res.roles_arr.role_id);
                         $roleval = res.roles_arr[0].role;
-                        // $('#role_name').val(res.role_arr.role);
-                        // $val = $('#role_name').val(res.role_arr.role);
-                        // $('#role_name').empty();
-                        // $('#role_name').append( $val );
                         $('#role_name').empty();
-                        $('#role_name').append('<option value="' + res.roles_arr[0].role_id + '">'  + res.roles_arr[0].role + '</option>');
-                        // $('#role_name').append('<option value="" disabled selected>' + roleval + '</option>');
+                        $('#role_name').append('<option value="' + res.roles_arr[0].role_id + '">' + res.roles_arr[0].role + '</option>');
+
                         $val = true;
                     }
                 })

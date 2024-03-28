@@ -1,10 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 require 'vendor/autoload.php';
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Color;
+
 class Employee_c extends CI_Controller
 {
 	public function __construct()
@@ -18,30 +20,30 @@ class Employee_c extends CI_Controller
 		$this->load->view('Employeenew', $data);
 	}
 	public function index()
-	{    		 		
-			$where = '';
-			$type='';
-			$wheresearchbox ='';
-			$search = '';		
-			if($this->input->post('typeSearch')!=''  ){
-				$type = $this->input->post('typeSearch');
-				$where .= " AND Type='".$type."'";
-			}
-			if($this->input->post('searchbox')!=''){
-				$search = $this->input->post('searchbox');
-				$wheresearchbox .= "AND(Name LIKE '%".$search."%' OR Email LIKE '%".$search."%')" ;	
-				empty($_POST);
-			}		
-			$where.=$wheresearchbox;
-			$data['arr'] = $this->Employee_m->getdata($where);
-			$data['typeSearch'] = $type;	
-			$current_url = get_current_url();
-    $path = parse_url($current_url, PHP_URL_PATH);
-    $pathParts = explode('/', $path);
-    $ci3Index = array_search('ci3', $pathParts);
-    $firstElementAfterCi3 = $pathParts[$ci3Index + 1];
-    $data['menu'] = getDatabyHref($firstElementAfterCi3);
-			$this->load->view('Employeenew', $data);	
+	{
+		$where = '';
+		$type = '';
+		$wheresearchbox = '';
+		$search = '';
+		if ($this->input->post('typeSearch') != '') {
+			$type = $this->input->post('typeSearch');
+			$where .= " AND Type='" . $type . "'";
+		}
+		if ($this->input->post('searchbox') != '') {
+			$search = $this->input->post('searchbox');
+			$wheresearchbox .= "AND(Name LIKE '%" . $search . "%' OR Email LIKE '%" . $search . "%')";
+			empty($_POST);
+		}
+		$where .= $wheresearchbox;
+		$data['arr'] = $this->Employee_m->getdata($where);
+		$data['typeSearch'] = $type;
+		$current_url = get_current_url();
+		$path = parse_url($current_url, PHP_URL_PATH);
+		$pathParts = explode('/', $path);
+		$ci3Index = array_search('ci3', $pathParts);
+		$firstElementAfterCi3 = $pathParts[$ci3Index + 1];
+		$data['menu'] = getDatabyHref($firstElementAfterCi3);
+		$this->load->view('Employeenew', $data);
 	}
 	public function getbyid()
 	{
@@ -50,14 +52,14 @@ class Employee_c extends CI_Controller
 		echo json_encode($result);
 	}
 	public function addemployee()
-	{	
+	{
 		$Name = $this->input->post('Name');
 		$Phone = $this->input->post('Phone');
 		$emp_t_id = $this->input->post('emp_t_id');
 		$Type = $this->input->post('Type');
 		$DOB = $this->input->post('DOB');
 		$DOJ = $this->input->post('DOJ');
-		$Email = $this->input->post('Email');		
+		$Email = $this->input->post('Email');
 		$data = array(
 			'Name' 	=> $Name,
 			'Phone' => $Phone,
@@ -67,20 +69,21 @@ class Employee_c extends CI_Controller
 			'Email'  => $Email,
 		);
 		if ($emp_t_id != null) {
-			$this->Employee_m->editdata($data,$emp_t_id);
+			$this->Employee_m->editdata($data, $emp_t_id);
 		} else {
 			$this->Employee_m->insertdataa($data);
 		}
 	}
-	public function typeSearch(){   
+	public function typeSearch()
+	{
 		// get data by the type  into an array 
 		// then load the data 
-		$data['arr'] = $this->Employee_m->getdatabytype(1);	
-		$this->load->view('Employeenew', $data);		
+		$data['arr'] = $this->Employee_m->getdatabytype(1);
+		$this->load->view('Employeenew', $data);
 	}
 	public function serchType($data)
 	{
-		$this->load->view('Employeenew', $data);	
+		$this->load->view('Employeenew', $data);
 	}
 	public function editemployee()
 	{
@@ -97,7 +100,7 @@ class Employee_c extends CI_Controller
 		exit;
 		$type = $this->input->get('ID');
 		$table = $this->Employee_m->getdatafromtype($type);
-		echo $table ;
+		echo $table;
 	}
 	public function exportExcel()
 	{
@@ -121,12 +124,12 @@ class Employee_c extends CI_Controller
 		$selectedData = array_map(function ($row) use ($columnTitles, $columnDisplayValues) {
 			if (isset($row['Type']) && isset($columnDisplayValues['Type'][$row['Type']])) {
 				$row['Type'] = $columnDisplayValues['Type'][$row['Type']];
-				$newTime = date('d/M/Y',strtotime($row['DOB']));
-				$newTimedoj = date('d/M/Y',strtotime($row['DOJ']));
-				$row['DOB'] =$newTime ; // change the DOB format here 
-				$row['DOJ'] = $newTimedoj;// change the DOJ format here
+				$newTime = date('d/M/Y', strtotime($row['DOB']));
+				$newTimedoj = date('d/M/Y', strtotime($row['DOJ']));
+				$row['DOB'] = $newTime; // change the DOB format here 
+				$row['DOJ'] = $newTimedoj; // change the DOJ format here
 			}
-			return array_intersect_key($row, array_flip($columnTitles));// compares the key and returns an array  matches with key=>
+			return array_intersect_key($row, array_flip($columnTitles)); // compares the key and returns an array  matches with key=>
 		}, $data['arr']);
 		//style the first row 
 		$cellrange = 'A1:F1';

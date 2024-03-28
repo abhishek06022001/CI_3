@@ -32,8 +32,7 @@ class Employee_m extends CI_Model
         }
     }
     public function insertData($data)
-    { 
-      
+    {      
         if($data[0] != 'Name'){
             $columnNames = array('Name', 'Phone','Email','Type','DOJ','DOB');
             $insertDatas = array_combine($columnNames, $data);

@@ -120,6 +120,9 @@
                     $('#save').prop('disabled', true);
                 }
             });
+            $('.form-check-input').on('change',function(){
+                    $('#save').removeAttr('disabled');
+                });
        });
        function isFilled() {
                 return ($('#addrole').val() !== "" );
