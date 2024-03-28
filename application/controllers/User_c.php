@@ -32,22 +32,23 @@ class User_c extends CI_Controller
         // echo "<pre>";print_r($data['user']);echo "</pre>";exit;
         return $this->load->view('user_management', $data);
     }
-    public function view_user_permissions($user_id =''){
+    public function view_user_permissions($user_id = '')
+    {
         $data['features_data'] = $this->Feature_m->getdata();
         $role_id = $this->User_m->getRoleId($user_id);
-        
+
         $condition = $this->User_m->ifUserPermContains($user_id);
 
         if ($condition) {
-      
+
             $data['user_perm'] = $this->User_m->get_permissions($user_id); //  got 
-        }else{
-     
-            $data['user_perm']= $this->Role_m->get_role_permissions($role_id);
+        } else {
+
+            $data['user_perm'] = $this->Role_m->get_role_permissions($role_id);
         }
-        $data['user_id']= $user_id;
-   
-        return $this->load->view('user_permission',$data);
+        $data['user_id'] = $user_id;
+
+        return $this->load->view('user_permission', $data);
     }
     public function get_roles()
     {
@@ -64,11 +65,11 @@ class User_c extends CI_Controller
         $new_password = $this->generate_password();
         $new_password = base64_encode($new_password);
         $data = array(
-            'username'=> $username,
+            'username' => $username,
             'Email' => $Email,
             'role_id' => $role_id,
             'password' => $new_password,
-            'user_id' =>$user_id
+            'user_id' => $user_id
         );
 
         $this->User_m->saveData($data, $user_id);
@@ -85,16 +86,44 @@ class User_c extends CI_Controller
     }
     public function get_data_by_id()
     {
-        $user_id = $this->input->post('ID');// ok
+        $user_id = $this->input->post('ID'); // ok
         $data['user_arr'] = $this->User_m->get_data_by_id($user_id);
         $role_id = $data['user_arr']['role_id'];
         $data['roles_arr'] = $this->User_m->get_role_table_data($role_id);
         // echo "<pre>";print_r($data);echo "</pre>";exit;
         echo json_encode($data);
     }
-    public function delete_user(){
+    public function delete_user()
+    {
         $user_id = $this->input->post('ID');
         $this->User_m->deleteUser($user_id);
     }
-   
+    public function editpermisson()
+    {
+        $hiddenUserId = $this->input->post('hiddenRoleId');
+        // $this->User_m->deletePermissionData($hiddenUserId); // have to make 
+        // echo "<pre>";
+        // print_r($hiddenUserId);
+        // echo "</pre>";
+        // exit;
+
+        ///now insert the data into the respective tables but how             
+        // $data['role'] = $this->input->post('role');
+        $data['user_id'] = $this->input->post('hiddenRoleId');
+        $data['permission'] = $this->input->post('permission');
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
+        // exit;
+        $this->User_m->deletePermission($hiddenUserId);
+        $this->User_m->savePermission($data);
+        // $allowed_columns = array('role', 'role_id');
+        // // have done roletable update here  now permission_table update now 
+        // $insert_data = array_intersect_key($data, array_flip($allowed_columns));
+        // $this->Role_m->update($insert_data);
+        // $this->Role_m->savePermission($data, $hiddenRoleId);
+        redirect('DashBoard');
+    }
+    // now after gettinf the data extract the role and add role name in the db  
+
 }

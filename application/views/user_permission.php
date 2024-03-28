@@ -33,7 +33,7 @@
                         <div class="card w-100" style="background-color:azure">
                             <div class="card-body">
                                 <div class="row">
-                                    <form action="<?php echo base_url('editpermisson') ?>" method="post">
+                                    <form action="<?php echo base_url('User_c/editpermisson') ?>" method="post">
                                         <div class="form-group row">
                                             <div class="row align-items-baseline">
                                                <input type="" id="hiddenRoleId" name="hiddenRoleId" value="<?php echo $user_id  ?>">

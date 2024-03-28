@@ -99,6 +99,28 @@ class User_m extends CI_Model
         return false;
     }
     }
+    public function deletePermission($user_id){
+        $this->db->where('user_id', $user_id);
+        $this->db->delete($this->user_permissions_table);
+    }
+    public function savePermission($data){
+        $user_id = $data['user_id'];
+        foreach($data['permission'] as $key=>$value)
+        {
+            $menu_id = $key;
+            foreach($value as $arr)
+            {
+                // echo "<pre>"; print_r($arr);"</pre>";exit;
+                $insert_data= array
+                (
+                    'user_id' => $user_id,
+                    'permission' => $arr,
+                    'menu_id'=>$key
+                );
+                $this->db->insert($this->user_permissions_table,$insert_data);
+            }
+        }
+    }
     
    
 }
