@@ -14,7 +14,8 @@
     <?php $this->load->view('header_top'); 
      $menu_id = $menu[0]['menu_id'];
      $role_id = $_SESSION['role_id'];
-    //  echo "<pre>";print_r($role_id);echo "</pre>";exit; 
+     $user_id =$_SESSION['user_id'];
+    //  echo "<pre>";print_r($user_id);echo "</pre>";exit; 
     ?>
     <div id="layoutSidenav">
         <?php $this->load->view('sidebar'); ?>

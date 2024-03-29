@@ -16,6 +16,7 @@
     <?php $this->load->view('header_top'); 
        $menu_id = $menu[0]['menu_id'];
        $role_id = $_SESSION['role_id'];
+       $user_id = $_SESSION['user_id'];
     ?>
     <div id="layoutSidenav">
         <?php $this->load->view('sidebar'); ?>
@@ -334,14 +335,6 @@
             console.log(data);
             searchform.submit();
         });
-        // $.ajax({
-        //         type: 'POST',
-        //         url: "<?php echo base_url('Employee_c') ?>",      
-        //         data:data,       
-        //         success: function(response) {
-        //             form.submit();        
-        //         }
-        //     });
         function isEmail(email) {
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             return regex.test(email);

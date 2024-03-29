@@ -22,7 +22,13 @@ $id = 0;
                     <!-- here is the data that is getting shown on sidebar  -->
                     <?php 
                      $role_id = $_SESSION['role_id'];
-                     if(checkRolePermission($role_id,$menu['menu_id'] ,'View')){
+                     $user_id = $_SESSION['user_id'];
+                    //  echo $user_id;
+                    //  echo " ";
+                    //  echo $role_id ;
+                    //  exit;
+                    
+                     if(checkRolePermission($user_id,$role_id,$menu['menu_id'] ,'View')){
                         ?>
                        <!-- if true only  -->
                         <a class="nav-link <?php echo $collapsed; ?>" href="<?php echo $menu['hreflink']; ?>" <?php echo $datacolpase; ?>>

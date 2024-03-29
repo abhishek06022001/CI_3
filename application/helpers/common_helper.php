@@ -1,11 +1,8 @@
 <?php
  function getMenuItems($id) {
-    $CI = &get_instance();
-  
-    
+    $CI = &get_instance();    
     $table = "menu_t";
     $sql = "SELECT * FROM $table WHERE (Parent_menu_id = $id AND isDeleted = 0)  order by isOrder";
-
     $result = $CI->db->query($sql);
    // echo "<pre>";print_r($result->result_array());"</pre>";exit;
     if ($result) {
@@ -36,20 +33,23 @@ function getCount($where){
         return array(); 
     }
 }
-function checkRolePermission($role_id,$menu_id,$permission=''){
+function checkRolePermission($user_id,$role_id,$menu_id,$permission=''){
     $ans = false ;
-
     $CI = &get_instance(); 
-    $table = "role_permissions_t"; 
+    if($ans)
+    {
+
+    }else
+    {
+        $table = "role_permissions_t"; 
+    
     $sql = "select * from $table where role_id = ? AND menu_id= ?  AND permission= ? " ;
     $result = $CI->db->query($sql,array($role_id,$menu_id,$permission));
-
     if($result->num_rows()>0){
-        $ans = true;
-    
-     }
-  
-    return $ans;    
+        $ans = true;    
+     }  
+    return $ans;   
+    }
  }
  function get_current_url(){
     $CI =& get_instance();
@@ -62,6 +62,27 @@ function checkRolePermission($role_id,$menu_id,$permission=''){
     $result = $CI->db->query($sql,array($href));
     return $result->result_array();
  }
-
-
 ?>
+<!-- 
+    function checkRolePermission($user_id, $role_id, $menu_id, $permission = '')
+{
+    $ans = false;
+    $CI = &get_instance();
+    if (uidexists($user_id)) {
+        $table2 = "user_permission_t";
+        $sql = "select* from $table2 where user_id = ? AND menu_id =? AND permission =   ?    ";
+        $result = $CI->db->query($sql, array($user_id, $menu_id, $permission));
+        if ($result->num_rows() > 0) {
+            return true;
+        }
+    } else {
+        $table = "role_permissions_t";
+        $sql = "select * from $table where role_id = ? AND menu_id= ?  AND permission=   ?    ";
+        $result = $CI->db->query($sql, array($role_id, $menu_id, $permission));
+        if ($result->num_rows() > 0) {
+            return true;
+        }
+    }
+  return $ans;
+}
+-->

@@ -33,7 +33,6 @@ class User_m extends CI_Model
             /// key 0 res  is array 
             $index = $res['menu_id'];
             $data_arr[$index][$res['permission']]= 1;
-
         }
         // echo "<pre>";print_r($data_arr);echo "</pre>";exit; 
         return $data_arr;
