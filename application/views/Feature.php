@@ -48,7 +48,7 @@
                                 Enter the icon class from <a href="https://fontawesome.com/search" target="_blank">this page</a>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block " id="register" disabled value="Register"
-                            <?php if (!checkRolePermission($role_id, $menu_id, 'Create')) {
+                            <?php if (!checkRolePermission($user_id,$role_id, $menu_id, 'Create')) {
                                        echo "hidden";}?>
                             >Submit</button>
                         </form>
@@ -73,11 +73,11 @@
                                         <td><?php echo $array['label']; ?></td>
                                         <td>
                                             <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-toggle="modal" data-target="#exampleModalLong" data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['menu_id'] ?>"
-                                            <?php if (!checkRolePermission($role_id, $menu_id, 'Update')) {
+                                            <?php if (!checkRolePermission($user_id,$role_id, $menu_id, 'Update')) {
                                        echo "hidden";}?>
                                             >EDIT</button>
                                             <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" data-id="<?php echo $array['menu_id'] ?>"
-                                            <?php if (!checkRolePermission($role_id, $menu_id, 'Delete')) {
+                                            <?php if (!checkRolePermission($user_id,$role_id, $menu_id, 'Delete')) {
                                        echo "hidden";}?>
                                             >Delete</button>
                                         </td>

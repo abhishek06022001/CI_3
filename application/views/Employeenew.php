@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <button class="btn btn-success addemp" data-bs-toggle="modal" data-bs-target="#exampleModaladd" style="float: right;"
-                                        <?php if (!checkRolePermission($role_id, $menu_id, 'Create')) {
+                                        <?php if (!checkRolePermission($user_id,$role_id, $menu_id, 'Create')) {
                                        echo "hidden";}?>
                                         >Add Employee</button>
                                     </div>
@@ -117,11 +117,11 @@
                                                     <td><?php echo $array['DOB']; ?></td>
                                                     <td>
                                                         <button class="col-sm-3 btn  btn-info btn-sm editbutton " data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['emp_t_id'] ?>"
-                                                        <?php if (!checkRolePermission($role_id, $menu_id, 'Update')) {
+                                                        <?php if (!checkRolePermission($user_id,$role_id, $menu_id, 'Update')) {
                                        echo "hidden";}?>
                                                         >EDIT</button>
                                                         <button class="col-sm-4 btn  btn-danger btn-sm deletebutton edit-button" data-id="<?php echo $array['emp_t_id'] ?>"
-                                                        <?php if (!checkRolePermission($role_id, $menu_id, 'Delete')) {
+                                                        <?php if (!checkRolePermission($user_id,$role_id, $menu_id, 'Delete')) {
                                        echo "hidden";}?>
                                                         >Delete</button>
                                                     </td>
