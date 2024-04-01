@@ -18,7 +18,7 @@
                     <?php include 'sidebar.php'?>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        N/A
                     </div>
                 </nav>
             </div>

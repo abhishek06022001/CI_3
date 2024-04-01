@@ -167,6 +167,7 @@ $user_id = $_SESSION['user_id'];
                var username = $('#Name').val();
                var Email = $('#Email').val();
                var role_name = $('#role_name').val();
+            //    alert(role_name);
                let data = {
                     'username': username,
                     'Email': Email,
@@ -179,7 +180,7 @@ $user_id = $_SESSION['user_id'];
                     data: data,
                     success: function(response) {
                         console.log(response);
-                        window.location.href = "<?php echo base_url('User_c') ?>";
+                        window.location.href = "<?php echo base_url('user-management') ?>";
                     }
                 });
             });

@@ -68,7 +68,6 @@ function checkIfUseridispresent($user_id)
     }
     return false;
 }
-
 function get_current_url()
 {
     $CI = &get_instance();

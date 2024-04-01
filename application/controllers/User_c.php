@@ -33,6 +33,7 @@ class User_c extends CI_Controller
       
         // $href = $current_url
         $data['menu'] = getDatabyHref($firstElementAfterCi3);
+        // echo "<pre>";print_r($data);echo "</pre>";exit;
         $data['role'] = $this->User_m->get_role_table_data();
         $data['user'] = $this->User_m->get_user_table_data();
         $data['permissions'] = $this->User_m->get_permission_table_data();
