@@ -36,7 +36,7 @@
                                     <form action="<?php echo base_url('User_c/editpermisson') ?>" method="post">
                                         <div class="form-group row">
                                             <div class="row align-items-baseline">
-                                               <input type="" id="hiddenRoleId" name="hiddenRoleId" value="<?php echo $user_id  ?>">
+                                               <input type="hidden" id="hiddenRoleId" name="hiddenRoleId" value="<?php echo $user_id  ?>">
                                            </div>
                                             <div class="row">
                                                 <div class="col-sm-2"></div>

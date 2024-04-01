@@ -8,13 +8,17 @@
         color: rgb(0, 00, 0);
     }
 </style>
+<?php
 
-<?php $this->load->view('header');
+use SebastianBergmann\Environment\Console;
+
+ $this->load->view('header');
 ?>
 <?php
+$menu_id = $menu[0]['menu_id'];
+$role_id = $_SESSION['role_id'];
 $user_id = $_SESSION['user_id'];
 ?>
-
 <body class="sb-nav-fixed">
     <?php $this->load->view('header_top'); ?>
     <div id="layoutSidenav">
@@ -25,7 +29,12 @@ $user_id = $_SESSION['user_id'];
                     <div class="card">
                         <div class="card-body d-flex">
                             <h2 style="color:green ;">User List</h2>
-                            <button style="margin-left: auto;" class="btn btn-lg btn-warning addemp " data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $user_id ?>">Add User</button>
+                            <button style="margin-left: auto;" class="btn btn-lg btn-warning addemp " data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $user_id ?>"
+                            <?php
+                                                                                                                                                                            if (!checkRolePermission($user_id,$role_id, $menu_id, 'Create')) {
+                                                                                                                                                                                echo "hidden";
+                                                                                                                                                                            }
+                                                                                                                                                                            ?>>Add User</button>
                         </div>
                     </div>
                     <div class="mt-4">
@@ -53,8 +62,18 @@ $user_id = $_SESSION['user_id'];
                                                 <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="modal" onclick="window.location.href='<?php echo base_url('user_permissions/').$array['user_id']?>'" data-bs-target="#exampleModal" data-id="<?php echo $array['user_id'] ?>">VIEW AND EDIT</button>
                                             </td>
                                             <td>
-                                                <button class="col btn  btn-info btn editbutton " data-toggle="modal" data-target="#exampleModalLong" data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['user_id'] ?>">EDIT</button>
-                                                <button class="col btn  btn-danger btn deletebutton edit-button" data-id="<?php echo $array['user_id'] ?>">Delete</button>
+                                                <button class="col btn  btn-info btn editbutton " data-toggle="modal" data-target="#exampleModalLong" data-bs-toggle="modal" data-bs-target="#exampleModaladd" data-id="<?php echo $array['user_id'] ?>"
+                                                <?php
+                                                                                                                                                                            if (!checkRolePermission($user_id,$role_id, $menu_id, 'Update')) {
+                                                                                                                                                                                echo "hidden";
+                                                                                                                                                                            }
+                                                                                                                                                                            ?>>EDIT</button>
+                                                <button class="col btn  btn-danger btn deletebutton edit-button" data-id="<?php echo $array['user_id'] ?>"
+                                                <?php
+                                                                                                                                                                            if (!checkRolePermission($user_id,$role_id, $menu_id, 'Delete')) {
+                                                                                                                                                                                echo "hidden";
+                                                                                                                                                                            }
+                                                                                                                                                                            ?>>Delete</button>
                                             </td>
                                         </tr>
                                 <?php endforeach;
@@ -88,10 +107,7 @@ $user_id = $_SESSION['user_id'];
                                                             <div class="row mb-4">
                                                                 <label for="role_name" class="col-sm-3 col-form-label">Role Name</label>
                                                                 <div class="col-sm">
-                                                                    <!-- <input  style="width: 100%;" name="role_id " id="role_id"> -->
-                                                                    <?php
-                                                                    ?>
-                                                                    <select name="role_name" id="role_name" class="form-control">
+                                                                   <select name="role_name" id="role_name" class="form-control">
                                                                         <option value="" disabled selected>Select a Role</option>
                                                                     </select>
                                                                 </div>
@@ -105,13 +121,9 @@ $user_id = $_SESSION['user_id'];
                                             </div>
                                         </div>
                                     </div>
-
-
                             </tbody>
                         </table>
                     </div>
-
-
                 </div>
             </main>
             <?php $this->load->view('footer_bottom'); ?>
@@ -129,14 +141,15 @@ $user_id = $_SESSION['user_id'];
                 $('#user_id').val('');
                 $val = true;
             });
-
             $('#role_name').on('click', function() {
+                // alert("hey");
                 if ($val) {
                     $.ajax({
                         url: "<?php echo base_url('User_c/get_roles'); ?>",
                         type: "post",
                         dataType: 'json',
                         success: function(res) {
+                            // console.log(res);
                             $('#role_name').empty();
                             $('#role_name').append(' <option value="" disabled selected> Select A Role </option>');
                             $.each(res.role, function(index, role) {
@@ -148,27 +161,18 @@ $user_id = $_SESSION['user_id'];
                 $val = false;
             });
             $('.view').click(function() {
-
-
             });
-
-            $('.addempsave').on('click', function() {
+           $('.addempsave').on('click', function() {
                 var userid = $('#user_id').val();
-
-                var username = $('#Name').val();
-
-
-                var Email = $('#Email').val();
-
-                var role_name = $('#role_name').val();
-
-                let data = {
+               var username = $('#Name').val();
+               var Email = $('#Email').val();
+               var role_name = $('#role_name').val();
+               let data = {
                     'username': username,
                     'Email': Email,
                     'role_id': role_name, // role id was 36 
                     'user_id': userid
                 }
-
                 $.ajax({
                     type: 'POST',
                     url: "<?php echo base_url('User_c/add_user') ?>",
@@ -205,14 +209,14 @@ $user_id = $_SESSION['user_id'];
                     },
                     dataType: 'json',
                     success: function(res) {
-                        $('#user_id').val(res.user_arr.user_id);
-                        $('#Name').val(res.user_arr.username);
-                        $('#Email').val(res.user_arr.Email);
+                        console.log(res);
+                        $('#user_id').val(res.user_data[0].user_id);
+                        $('#Name').val(res.user_data[0].username);
+                        $('#Email').val(res.user_data[0].Email);
                         $('#role_id').val(res.roles_arr.role_id);
                         $roleval = res.roles_arr[0].role;
                         $('#role_name').empty();
                         $('#role_name').append('<option value="' + res.roles_arr[0].role_id + '">' + res.roles_arr[0].role + '</option>');
-
                         $val = true;
                     }
                 })
@@ -220,5 +224,4 @@ $user_id = $_SESSION['user_id'];
         });
     </script>
 </body>
-
-</html>
+/html>

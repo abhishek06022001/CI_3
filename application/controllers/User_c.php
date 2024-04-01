@@ -25,6 +25,14 @@ class User_c extends CI_Controller
          * have the role_id from the $session and store it in a variable 
          *
          */
+        $current_url = get_current_url();
+        $path = parse_url($current_url, PHP_URL_PATH);
+        $pathParts = explode('/', $path);
+        $ci3Index = array_search('ci3', $pathParts);
+        $firstElementAfterCi3 = $pathParts[$ci3Index + 1];
+      
+        // $href = $current_url
+        $data['menu'] = getDatabyHref($firstElementAfterCi3);
         $data['role'] = $this->User_m->get_role_table_data();
         $data['user'] = $this->User_m->get_user_table_data();
         $data['permissions'] = $this->User_m->get_permission_table_data();
@@ -53,6 +61,7 @@ class User_c extends CI_Controller
     public function get_roles()
     {
         $data['role'] = $this->User_m->get_role_table_data();
+        // echo "<pre>";print_r(   $data['role']);echo "</pre>";exit;
         echo json_encode($data);
     }
     public function add_user()
@@ -71,7 +80,6 @@ class User_c extends CI_Controller
             'password' => $new_password,
             'user_id' => $user_id
         );
-
         $this->User_m->saveData($data, $user_id);
     }
 
@@ -82,15 +90,18 @@ class User_c extends CI_Controller
         for ($i = 0; $i < 5; $i++) {
             $password .= $chars[rand(0, strlen($chars) - 1)];
         }
-        return $password;
+        return $password;   
     }
     public function get_data_by_id()
     {
         $user_id = $this->input->post('ID'); // ok
         $data['user_arr'] = $this->User_m->get_data_by_id($user_id);
-        $role_id = $data['user_arr']['role_id'];
+        // echo "<pre>";print_r($data);echo "</pre>";exit;  
+        $role_id =$this->User_m->getRoleId($user_id);
+        // echo "<pre>";print_r($role_id);echo "</pre>";exit;
         $data['roles_arr'] = $this->User_m->get_role_table_data($role_id);
-        // echo "<pre>";print_r($data);echo "</pre>";exit;
+        $data['user_data'] = $this->User_m->get_user_table_data($user_id);
+        // echo "<pre>";print_r($data);echo "</pre>";exit;  
         echo json_encode($data);
     }
     public function delete_user()
@@ -106,7 +117,6 @@ class User_c extends CI_Controller
         // print_r($hiddenUserId);
         // echo "</pre>";
         // exit;
-
         ///now insert the data into the respective tables but how             
         // $data['role'] = $this->input->post('role');
         $data['user_id'] = $this->input->post('hiddenRoleId');
@@ -125,5 +135,4 @@ class User_c extends CI_Controller
         redirect('DashBoard');
     }
     // now after gettinf the data extract the role and add role name in the db  
-
 }

@@ -10,38 +10,41 @@ class User_m extends CI_Model
         $query = $this->db->get_where($this->role_permissions_table, array('isDeleted' => 0));
         return $query->result_array();
     }
-    public function get_user_table_data()
-    {
-        $query = $this->db->get_where($this->users_table, array('isDeleted' => 0));
+    public function get_user_table_data($user_id = '')
+    {   $condition =  array('isDeleted' => 0);
+        if($user_id != '')
+        {
+            $condition['user_id'] = $user_id; 
+        }
+        $query = $this->db->get_where($this->users_table,$condition);
         return $query->result_array();
     }
-    public function get_role_table_data($role_id="")
-    {  
+    public function get_role_table_data($role_id = "")
+    {
         $condition = array('isDeleted' => 0);
-        if($role_id != ""){
-            $condition['role_id']= $role_id;
+        if ($role_id != "") {
+            $condition['role_id'] = $role_id;
         }
         $query = $this->db->get_where($this->roles_table, $condition);
-        
+
         return $query->result_array();
     }
-    public function get_permissions($user_id){
-        $query = $this->db->get_where($this->user_permissions_table,array('user_id'=>$user_id));
+    public function get_permissions($user_id)
+    {
+        $query = $this->db->get_where($this->user_permissions_table, array('user_id' => $user_id));
         $result = $query->result_array();
-        $data_arr= array();
-        foreach($result as $key => $res){
+        $data_arr = array();
+        foreach ($result as $key => $res) {
             /// key 0 res  is array 
             $index = $res['menu_id'];
-            $data_arr[$index][$res['permission']]= 1;
+            $data_arr[$index][$res['permission']] = 1;
         }
         // echo "<pre>";print_r($data_arr);echo "</pre>";exit; 
         return $data_arr;
-
-        
     }
     public function  getRoleId($user_id)
     {
-        $query = $this->db->get_where($this->users_table,array('user_id'=>$user_id));
+        $query = $this->db->get_where($this->users_table, array('user_id' => $user_id));
         // echo "<pre>";print_r($query);echo "</pre>";exit; 
         $result = $query->result_array();
         // echo "<pre>";print_r( $result[0]['role_id']);echo "</pre>";exit; 
@@ -63,7 +66,7 @@ class User_m extends CI_Model
         }
     }
     public function saveData($data, $user_id)
-    {    
+    {
         // echo "<pre>";print_r($data);"</pre>";exit;
         if ($user_id != "") {
             // echo "<pre>";print_r($user_id);echo "</pre>";exit;
@@ -73,15 +76,17 @@ class User_m extends CI_Model
             $this->db->insert($this->users_table, $data);
         }
     }
-    public function get_data_by_id ($user_id){
-        $query = $this->db->get_where($this->user_permissions_table, array('user_id'=>$user_id));
-        if($query->num_rows() > 0 ){
+    public function get_data_by_id($user_id)
+    {
+        $query = $this->db->get_where($this->user_permissions_table, array('user_id' => $user_id));
+        if ($query->num_rows() > 0) {
             return $query->row_array();
-        }else {
+        } else {
             return null;
         }
     }
-    public function deleteUser($user_id){
+    public function deleteUser($user_id)
+    {
         $data = array(
             'isdeleted' => 1
         );
@@ -90,36 +95,33 @@ class User_m extends CI_Model
     }
     public function ifUserPermContains($user_id)
     {
-        $query = $this->db->get_where($this->user_permissions_table,array('user_id '=>$user_id));
+        $query = $this->db->get_where($this->user_permissions_table, array('user_id ' => $user_id));
         $result_array = $query->result_array();
-    if (count($result_array) > 0) {
-        return true;
-    } else {
-        return false;
+        if (count($result_array) > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    }
-    public function deletePermission($user_id){
+    public function deletePermission($user_id)
+    {
         $this->db->where('user_id', $user_id);
         $this->db->delete($this->user_permissions_table);
     }
-    public function savePermission($data){
+    public function savePermission($data)
+    {
         $user_id = $data['user_id'];
-        foreach($data['permission'] as $key=>$value)
-        {
+        foreach ($data['permission'] as $key => $value) {
             $menu_id = $key;
-            foreach($value as $arr)
-            {
+            foreach ($value as $arr) {
                 // echo "<pre>"; print_r($arr);"</pre>";exit;
-                $insert_data= array
-                (
+                $insert_data = array(
                     'user_id' => $user_id,
                     'permission' => $arr,
-                    'menu_id'=>$key
+                    'menu_id' => $key
                 );
-                $this->db->insert($this->user_permissions_table,$insert_data);
+                $this->db->insert($this->user_permissions_table, $insert_data);
             }
         }
     }
-    
-   
 }

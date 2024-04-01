@@ -64,11 +64,6 @@ function checkIfUseridispresent($user_id)
     $sql = "SELECT * FROM $table WHERE user_id = ?";
     $result = $CI->db->query($sql, array($user_id));
     if ($result->num_rows() > 0) {
-        //  echo "<pre>";
-        //  print_r($result->result_array()); // Printing the result as an array
-        //  echo "</pre>";
-        //  exit;
-        // You may also use print_r($result->row()); to print a single row
         return true;
     }
     return false;
@@ -88,26 +83,5 @@ function getDatabyHref($href)
     return $result->result_array();
 }
 ?>
-<!-- 
-    function checkRolePermission($user_id, $role_id, $menu_id, $permission = '')
-{
-    $ans = false;
-    $CI = &get_instance();
-    if (uidexists($user_id)) {
-        $table2 = "user_permission_t";
-        $sql = "select* from $table2 where user_id = ? AND menu_id =? AND permission =   ?    ";
-        $result = $CI->db->query($sql, array($user_id, $menu_id, $permission));
-        if ($result->num_rows() > 0) {
-            return true;
-        }
-    } else {
-        $table = "role_permissions_t";
-        $sql = "select * from $table where role_id = ? AND menu_id= ?  AND permission=   ?    ";
-        $result = $CI->db->query($sql, array($role_id, $menu_id, $permission));
-        if ($result->num_rows() > 0) {
-            return true;
-        }
-    }
-  return $ans;
-}
--->
+
+
